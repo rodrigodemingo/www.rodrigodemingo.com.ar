@@ -10,3 +10,4 @@ RewriteRule . /www.rodrigodemingo.com.ar/index.php [L]
 </IfModule>
 
 # END WordPress
+

@@ -1024,7 +1024,8 @@ span + .edit-link:before,
 .site-content .entry-meta,
 .page-content {
 	margin: 0 auto;
-	max-width: 474px;
+	/* max-width: 474px; */
+	max-width: 100%;
 }
 
 .page-content {
@@ -4024,6 +4025,24 @@ a.post-thumbnail:hover {
 
 	.site-content blockquote.alignright {
 		margin-right: -18%;
+	}
+
+	/* NEW */
+
+	.entry-content h2 {
+		margin-bottom: 20px;
+	}
+
+	.image_work {
+		float: left;
+		max-width: 48%;
+	}
+
+	.text_work {
+		float: right;
+		max-width: 48%;
+		text-align: justify;
+		overflow: hidden;
 	}
 }
 

@@ -3,13 +3,39 @@ global $eo_const,$eo_options;
 if($eo_const["img_h_clss"])$img_h = $eo_const["img_h_clss"];
 (of_get_option('slider_postcnt') ) ? $postcnt = intval(of_get_option('slider_postcnt')) : $postcnt = 3;
 $cat = intval(of_get_option('slider_postcat'));
+$orderby = of_get_option('slider_ord_by');
+$ord = of_get_option('slider_ord');
+$wtd = $eo_options['caru_whtd'];
+if( !empty($wtd) & is_array($wtd) ) {
+	$types = array();
+	foreach ( $wtd as $typ => $v) {
+		if($v == "1")	$types[] = $typ;
+	}
+	if(empty($types)) $types = array("post");
+	//var_dump($less_rsrcs_arr);
+}
 $caru_args = array(
-	'posts_per_page' => $postcnt,
-	'cat' => $cat,
+	'post_type' => $types,
 	'ignore_sticky_posts' => 1
 );
+if($postcnt) $caru_args["posts_per_page"] = $postcnt;
+if($orderby) $caru_args["orderby"] = $orderby;
+if($ord) $caru_args["order"] = $ord;
+if($cat && $cat != 0) $caru_args["cat"] = $cat;
+
+// Excludes
+$mod_exc_id = "caru";
+include(get_template_directory().'/inc/modules/_mod_excl_incl.php');
+
 // The Query
 $caru_qy = new WP_Query( $caru_args );
+$caru_post_arr = $caru_qy->posts;
+$caru_ids_arr = array();
+foreach ( $caru_post_arr as $caru_post ) {
+	$caru_ids_arr[] = $caru_post->ID;	
+}
+set_transient('eo_caru_ids',$caru_ids_arr);
+
 ?>
 <div class="carousel slide" id="myCarousel">
   <!-- Indicators -->
@@ -39,7 +65,7 @@ $caru_qy = new WP_Query( $caru_args );
 		}
 	
 	?>
-	<img class="hold" src="data:image/png;base64," data-src="<?php echo get_template_directory_uri().'/library/bootstrap/js/holder.js/100%x320/auto/'.array_rand(eo_get_cons('img_h_clss')).'/text:'.esc_attr($buzz_txt); ?>" alt="<?php get_the_title() ?>">
+	<img class="hold" src="data:image/png;base64," data-src="<?php echo get_template_directory_uri().'/library/bootstrap/js/holder.js/100%x320/auto/'.array_rand(eo_get_cons('img_h_clss')).'/text:'.esc_attr($buzz_txt); ?>" alt="<?php get_the_title() ?>" data-holder-invisible="true">
 	<?php } ?>
     <div class="item <?php if($caru_qy->current_post == 0) echo 'active';?>">
      <?php 	if ( has_post_thumbnail() === false && $eo_options["use_placeholder"] != "1" &&  $eo_options["use_placeholder_img"] == "1" ) { ?>

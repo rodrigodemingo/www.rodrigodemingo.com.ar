@@ -29,13 +29,16 @@ function optionsframework_tabs() {
 
 function optionsframework_fields() {
 
-	global $allowedtags,$eo_options;
+	global $allowedtags,$eo_options,$theme_opt_slug;
 	$optionsframework_settings = get_option( 'optionsframework' );
 	$eo_opts = get_option( 'eo_opts' );
 	$all_fonts = get_option( 'eo_all_fonts_arr' );
 
+	if($theme_opt_slug) {
+		$option_name = $theme_opt_slug;	
+	}
 	// Gets the unique option id
-	if ( isset( $optionsframework_settings['id'] ) ) {
+	else if ( isset( $optionsframework_settings['id'] ) ) {
 		$option_name = $optionsframework_settings['id'];
 	}
 	else {

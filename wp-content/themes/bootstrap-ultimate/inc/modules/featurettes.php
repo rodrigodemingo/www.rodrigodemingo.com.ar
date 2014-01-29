@@ -23,7 +23,7 @@ if($ord) $feat_args["order"] = $ord;
 if($cat && $cat != 0) $feat_args["cat"] = $cat;
 
 $mod_exc_id = "feat";
-include("_mod_excl_incl.php");
+include(get_template_directory().'/inc/modules/_mod_excl_incl.php');
 
 // The Query
 $feat_qy = new WP_Query( $feat_args );

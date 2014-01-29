@@ -32,7 +32,7 @@
 		$eo_opts =  get_option('eo_opts');
 	//	var_dump($options);
 	//	var_dump($eo_opts["groups"]);
-		$menu = '<div role="complementary" class="bs-sidebar col-md-3 col-lg-2" id="eo_bs_side_menu">
+		$menu = '<div role="complementary" class="bs-sidebar col-md-3 col-lg-2 visible-lg" id="eo_bs_side_menu">
 		<ul class="nav bs-sidenav">';
 							// var_dump($eo_opts["groups"]);
 

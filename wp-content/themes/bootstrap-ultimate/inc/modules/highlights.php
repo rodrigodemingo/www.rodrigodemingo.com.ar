@@ -23,7 +23,7 @@ if($ord) $high_args["order"] = $ord;
 if($cat && $cat != 0) $high_args["cat"] = $cat;
 
 $mod_exc_id = "high";
-include("_mod_excl_incl.php");
+include(get_template_directory().'/inc/modules/_mod_excl_incl.php');
 
 //var_dump($high_args);
 // The Query

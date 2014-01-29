@@ -499,7 +499,7 @@ max-width: 90%;
     padding: 10px 15px;
 }*/
 ul.nav-tabs {	padding-left:1em;}
-#topnavwrap { background: #f1f1f1;}
+#topnavwrap { background: #fcfcfc;}
 #optionsframework-wrap {background: #fff;   padding: 0 1em;}
 #backup_restore_opts label {  float: left; font-weight: normal; }
 #backup_restore_opts hr {

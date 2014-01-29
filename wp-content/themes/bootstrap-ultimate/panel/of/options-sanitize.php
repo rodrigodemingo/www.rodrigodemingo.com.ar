@@ -5,10 +5,15 @@
 add_filter( 'of_sanitize_text', 'sanitize_text_field' );
 
 /* Textarea */
-
+/* _eo-of-mod : do not sanitize css / js textar */
 function of_sanitize_textarea( $input ) {
 	global $allowedposttags;
-	$output = wp_kses( $input, $allowedposttags );
+	if ( current_user_can( 'unfiltered_html' ) ) {
+		$output = $input;
+	}
+	else {
+		$output = wp_kses( $input, $allowedposttags );
+	}
 	return $output;
 }
 

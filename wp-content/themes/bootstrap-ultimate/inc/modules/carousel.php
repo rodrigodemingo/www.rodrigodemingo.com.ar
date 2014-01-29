@@ -25,7 +25,7 @@ if($cat && $cat != 0) $caru_args["cat"] = $cat;
 
 // Excludes
 $mod_exc_id = "caru";
-include("_mod_excl_incl.php");
+include(get_template_directory().'/inc/modules/_mod_excl_incl.php');
 
 // The Query
 $caru_qy = new WP_Query( $caru_args );

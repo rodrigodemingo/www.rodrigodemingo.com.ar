@@ -25,26 +25,27 @@ if ( ! function_exists( 'optionsframework_init' ) ) {
 // Admin javascripts
 
 function eo_admin_jses(){
-	
+global $eo_options;
+	//var_dump($eo_options);
 	wp_register_script(  'modernizr', 
 	get_template_directory_uri() . '/rsc/js/modernizr.min.js', 
 	  array('jquery'), 
 	  '1.2' );
 	wp_enqueue_script('modernizr');
 	
-	if( of_get_option('load_chosen_adm') == "1") {
-	( of_get_option('use_chosen_min_js') == "1") ? $min = ".min" : $min = '' ;
+	if( $eo_options['load_chosen_adm'] == "1") {
+	//( $eo_options['use_chosen_min_js'] == "1") ? $min = ".min" : $min = '' ;
 	wp_register_script( 'chosen', 
-	  get_template_directory_uri() . '/lib/chosen/chosen'.$min.'.js', 
+	  get_template_directory_uri() . '/lib/chosen/chosen.jquery.js', 
 	  array('jquery'), 
 	  '1.2' );
 	}
-	if( of_get_option('load_bs_adm') == "1") {
+	if( $eo_options['load_bs_adm'] == "1") {
 	wp_enqueue_script('bootstrap');
 	
-	( of_get_option('use_bs_min_js') == "1") ? $min = ".min" : $min = '' ;
+	//( $eo_options['use_bs_min_js'] == "1") ? $min = ".min" : $min = '' ;
 	wp_register_script( 'bootstrap', 
-	  get_template_directory_uri() . '/lib/bootstrap/js/bootstrap'.$min.'.js', 
+	  get_template_directory_uri() . '/lib/bootstrap/js/bootstrap.js', 
 	  array('jquery'), 
 	  '1.2' );
 	wp_enqueue_script('bootstrap');
@@ -53,21 +54,22 @@ function eo_admin_jses(){
 
 // Admin Styles
 function eo_admin_csses() {
+global $eo_options;
+//var_dump($eo_options);
 	
 	wp_register_style( 'eo_optionsframework', get_template_directory_uri().'/panel/rsc/css/eo_optionsframework.css' );
 	wp_enqueue_style( 'eo_optionsframework' );
 	
 	// Bootstrap for admin	
-	if( of_get_option('load_bs_adm') == "1") {
-		( of_get_option('use_bs_min_css') == "1") ? $min = ".min" : $min = '' ;
-		wp_register_style( 'bootstrap', get_template_directory_uri() . '/lib/bootstrap/css/bootstrap'.$min.'.css', array(), '3.0.1', 'all' );
+	if( $eo_options['load_bs_adm'] == "1") {
+	//	( $eo_options['use_bs_min_css'] == "1") ? $min = ".min" : $min = '' ;
+		wp_register_style( 'bootstrap', get_template_directory_uri() . '/lib/bootstrap/css/bootstrap.css', array(), '3.0.1', 'all' );
 		wp_enqueue_style( 'bootstrap' );
 		
-	
 		
 		
-		$bsw_theme = of_get_option('bsw_theme');
-		if(  $bsw_theme && of_get_option('use_bsw_theme_admin') == "1") {
+		$bsw_theme = $eo_options['bsw_theme'];
+		if(  $bsw_theme && $eo_options['use_bsw_theme_admin'] == "1") {
 			
 			wp_register_style( 'bsw_theme_admin', get_template_directory_uri() . '/panel/of/themes/'. $bsw_theme . '.css', array(), '1.0', 'all' );
 			wp_enqueue_style( 'bsw_theme_admin' );
@@ -79,7 +81,7 @@ function eo_admin_csses() {
 	}
 	
 	// Chosen for admin
-	if( of_get_option('load_chosen_adm') == "1") {
+	if( $eo_options['load_chosen_adm'] == "1") {
 		wp_register_script( 'chosen-adm', get_template_directory_uri() . '/lib/chosen/chosen.jquery.min.js', array('jquery') );
 		wp_enqueue_script( 'chosen-adm' );
 		
@@ -88,6 +90,7 @@ function eo_admin_csses() {
 	}
 }
 function eo_admin_enhance_css() {
+global $eo_options;
 		wp_register_style( 'admin_enhance', get_template_directory_uri() . '/panel/rsc/admin-enhance.php', array(), '1.0', 'all' );
 		wp_enqueue_style( 'admin_enhance' );
 }
@@ -103,12 +106,13 @@ if(  $is_theme_opt_page) {
 	//add_action( 'admin_head', 'of_admin_head' );
 
 function optionsframework_custom_scripts() { 
+global $eo_options;
 ?>
 
 <script type="text/javascript">
 // _eo todo: move this inside a stable eo file ?
 jQuery(document).ready(function($) {
-	<?php if(of_get_option( 'coll_wp_menu' ) != "1" ) { ?>
+	<?php if($eo_options[ 'coll_wp_menu'] != "1" ) { ?>
 		$('body').removeClass("auto-fold folded");
 	<?php } ?>	
 	
@@ -203,11 +207,11 @@ jQuery(document).ready(function($) {
         
     });
 	
-	<?php	if(of_get_option( 'load_chosen_adm' ) == "1" ) { ?>
+	<?php	if($eo_options[ 'load_chosen_adm' ] == "1" ) { ?>
 			$("select").not(".hidv, .hidtype").chosen({disable_search_threshold: 6});
 			//$("select").not(":visible").chosen('destroy');
 	<?php } ?>
-	<?php if(of_get_option( 'load_bs_adm' ) ) { 
+	<?php if($eo_options[ 'load_bs_adm'] ) { 
 	// make side menu specific condition ?>
 	$('.nav-tab-wrapper a').each(function(index, element) {
         if( $(this).hasClass("nav-tab-active") ) {
@@ -221,7 +225,7 @@ jQuery(document).ready(function($) {
 	});
 	<?php } ?>
 
-	<?php if(of_get_option( 'load_bs_adm' ) == "1"  && of_get_option( 'prev_pop' ) ) { ?>
+	<?php if($eo_options['load_bs_adm'] == "1"  && $eo_options[ 'prev_pop'] == "1" ) { ?>
 	$('a.popp').popover({
     	 trigger: 'hover',
 		 html: true,
@@ -232,15 +236,15 @@ jQuery(document).ready(function($) {
         }
     });
 	<?php } ?>
-	<?php if(of_get_option( 'adm_cbox' ) == "1" ) { ?>
+	<?php if($eo_options[ 'adm_cbox' ] == "1" ) { ?>
 	$('.metabox-holder .section input:checkbox').not(".nosw").each(function(index, element) {
 		var thizid = $(this).attr("id");
 		var explaintext = $(this).next(".explain").text();
 		$("#section-" + thizid + " h4.heading").attr("title",explaintext).css( 'cursor', 'help' );
-		<?php if(of_get_option( 'cbox_style' ) == "droid" || of_get_option( 'cbox_style' ) == "google") { ?>
+		<?php if($eo_options[ 'cbox_style' ] == "droid" || $eo_options[ 'cbox_style' ] == "google") { ?>
 			$(this).next(".explain").text('').addClass("onoffswitch-label").prepend('<div class="onoffswitch-inner"><div class="onoffswitch-active"><div class="onoffswitch-switch">ON</div></div><div class="onoffswitch-inactive"><div class="onoffswitch-switch">OFF</div></div></div>');
 		<?php } ?>
-		<?php if(of_get_option( 'cbox_style' ) == "ios5" || of_get_option( 'cbox_style' ) == "win8" ) { ?>
+		<?php if($eo_options[ 'cbox_style' ] == "ios5" || $eo_options[ 'cbox_style' ] == "win8" ) { ?>
 			$(this).next(".explain").text('').addClass("onoffswitch-label").prepend('<div class="onoffswitch-inner"></div><div class="onoffswitch-switch"></div>');
 		<?php } ?>
 		$(this).parent().wrapInner( "<div class='onoffswitch'></div>" );
@@ -381,7 +385,8 @@ jQuery(document).ready(function($) {
 <?php
 //add_action('admin_head','eo_custom_admin_head_css');
 	function eo_custom_admin_head_css () {
-	//	var_dump(of_get_option( 'adm_cbox' ));
+	global $eo_options;
+	//	var_dump($eo_options[ 'adm_cbox' ));
 		
 	/* This might look HUGE and unnecessary in your <head>, i hate that too. I'd rather load ../wp-load.php, but it might not work for everyone and it has its risks:
 	http://ottopress.com/2010/dont-include-wp-load-please/
@@ -392,7 +397,7 @@ jQuery(document).ready(function($) {
 	*/
 	
 	$css_out = '<style type="text/css">';
-	if(of_get_option('use_bsw_theme_admin') == "1") {
+	if($eo_options['use_bsw_theme_admin'] == "1") {
 		$gl_u = get_template_directory_uri().'/lib/bootstrap/fonts/';
 	 /* bsw missing glyphicon fix */
 	 $css_out .= '@font-face {
@@ -402,7 +407,7 @@ jQuery(document).ready(function($) {
 	}';
 	}
 	
-		$adm_cbox = of_get_option( 'adm_cbox' );
+		$adm_cbox = $eo_options[ 'adm_cbox'];
 		if ( $adm_cbox )	{
 			
 			// tiny checkbox fixes
@@ -419,7 +424,7 @@ jQuery(document).ready(function($) {
 				max-width: 80px;
 				/* width: 6em; */
 			}';
-			if ( of_get_option( 'cbox_style' ) == 'droid'  )	{
+			if ( $eo_options[ 'cbox_style' ] == 'droid'  )	{
 			$css_out .= '/* manual width fix*/
 				.onoffswitch-label { width: 80px}    .onoffswitch {
 		position: relative; width: 100px;
@@ -474,7 +479,7 @@ jQuery(document).ready(function($) {
 		margin-left: 0;
 		}';	
 			}
-			else if ( of_get_option( 'cbox_style' ) == 'ios5'  )	{
+			else if ( $eo_options[ 'cbox_style' ] == 'ios5'  )	{
 				$css_out .= '/* manual height fix*/
 				.onoffswitch-switch { height: 26px}
 				.onoffswitch {
@@ -533,7 +538,7 @@ jQuery(document).ready(function($) {
 		right: 0px;
 		}';
 			}
-			else if ( of_get_option( 'cbox_style' ) == 'google'  )	{
+			else if ( $eo_options[ 'cbox_style' ] == 'google'  )	{
 				$css_out .= '/* manual width fix*/
 				.onoffswitch-label { width: 73px}    .onoffswitch {
 		position: relative; width: 100px;
@@ -681,10 +686,10 @@ jQuery(document).ready(function($) {
 
 ';
 			}
-			else if ( of_get_option( 'cbox_style' ) == 'asdasd'  )	{
+			else if ( $eo_options[ 'cbox_style' ] == 'asdasd'  )	{
 				$css_out .= '';
 			}
-			else if ( of_get_option( 'cbox_style' ) == 'win8'  )	{
+			else if ( $eo_options[ 'cbox_style' ] == 'win8'  )	{
 				$css_out .= ' /* manual height fix*/
 				.onoffswitch-switch { height: 26px}
 				.onoffswitch {

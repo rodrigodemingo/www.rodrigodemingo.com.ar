@@ -53,10 +53,11 @@ $lsiz = $eo_options["loop_siz"];
 	</section> <!-- end article section -->
   
   <footer>
-      <div class="post_meta"><?php _e("Posted", "bonestheme"); ?>
-      	<time datetime="<?php the_time('Y-m-j'); ?>" pubdate><?php echo '<span class="glyphicon glyphicon-time"></span> '.get_the_date('Y-m-d'); ?></time>
-        <?php _e("by", "bonestheme"); ?> <?php the_author_posts_link(); ?> <span class="amp">&</span> <?php _e("filed under", "bonestheme"); ?> <?php the_category(', '); ?>.
-		<span class="tags"><span class="glyphicon glyphicon-tags"></span><?php the_tags('<span class="tags-title">' . __("Tags", "bonestheme") . ':</span> ', ' ', ''); ?></span>
+      <div class="post_meta"> 
+     <?php if($eo_options["pmeta_time"] == "1") { ?><span class="footmeta ptime"><time datetime="<?php the_time('Y-m-j'); ?>" pubdate><span class="glyphicon glyphicon-time"></span><?php echo get_the_date('Y-m-d'); ?></time></span><?php } ?>
+     <?php if($eo_options["pmeta_auth"] == "1") { ?><span class="footmeta pauth"><?php _e("by", "bonestheme"); ?> <?php the_author_posts_link(); ?></span><?php } ?>
+     <?php if($eo_options["pmeta_cat"] == "1") { ?><span class="footmeta pcat"><?php _e("filed under", "bonestheme"); ?> <?php the_category(', '); ?>.</span><?php } ?>
+	<?php if($eo_options["pmeta_tags"] == "1") { ?><span class="footmeta ptags tags"><span class="glyphicon glyphicon-tags"></span><?php the_tags('<span class="tags-title">' . __("Tags", "bonestheme") . ':</span> ', ' ', ''); ?></span><?php } ?>
     </div>
     
   </footer> <!-- end article footer -->

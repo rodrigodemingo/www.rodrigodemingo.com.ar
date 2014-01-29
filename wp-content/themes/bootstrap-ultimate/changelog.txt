@@ -1,3 +1,19 @@
+v.1.4.3.3
+*Added: Style superiority option for bootswatch themes to choose whether should Bootswatch sub-theme override the theme styles , or the other way around.
+
+v.1.4.3.2
+*Bugfix: For child themes option panel (option framework) not loading properly.
+
+v.1.4.3.1
+*Rolled back bootstrap 3.0.3 library update, as it seems buggy. Will wait for v3.1 release at the end of the month.
+
+v.1.4.3
+* Added: Post footer meta options (date,tags etc.)
+* Update: Bootstrap 3.0.3 lib update.
+* Bugfix: Custom css/js textarea sanitization.
+* Bugfix: Home excludes
+* Various other minor fixes.
+
 v.1.4.2.1
 *typo
 

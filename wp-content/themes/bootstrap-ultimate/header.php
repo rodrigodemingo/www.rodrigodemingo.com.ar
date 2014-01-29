@@ -37,6 +37,18 @@ global $eo_options,$wpdb,$th_xs_slug;
 
 		<!-- theme options from options panel -->
 		<?php  inline_css_fe(); ?>
+       <?php if ( $eo_options['use_bsw_themes'] == "1" && $eo_options['bsw_theme'] != "default"  && $eo_options['bsw_theme_sup'] == "1" ) { 
+	    $gl_u = get_template_directory_uri().'/lib/bootstrap/fonts/';
+		?>
+       <link rel='stylesheet' id='bsw_theme-css'  href='<?php echo get_template_directory_uri() . "/panel/of/themes/" . $eo_options['bsw_theme'] . ".css" ?>' type='text/css' media='all' />
+       <?php
+	      echo '<style>@font-face {
+		  font-family: "Glyphicons Halflings";
+		  src: url("'.$gl_u.'glyphicons-halflings-regular.eot");
+		  src: url("'.$gl_u.'glyphicons-halflings-regular.eot?#iefix") format("embedded-opentype"), url("'.$gl_u.'glyphicons-halflings-regular.woff") format("woff"), url("'.$gl_u.'glyphicons-halflings-regular.ttf") format("truetype"), url("'.$gl_u.'glyphicons-halflings-regular.svg#glyphicons-halflingsregular") format("svg");
+		}
+	   </style>';
+	    } ?>
 		<?php  if ( is_singular() ) eo_inline_css_per_post(); ?>
 
 		<!-- typeahead plugin - if top nav search bar enabled -->

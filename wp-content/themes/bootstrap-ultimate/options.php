@@ -390,7 +390,7 @@ function optionsframework_options() {
 						"id" => "featimg_disp",
 						"desc" => "Display featured image block or inline. Hybrid is inline in loop, block in single mode",
 						"group" => "the loop",
-						"std" => "inline",
+						"std" => "hybrid",
 						"prev" => "featimgdisp.jpg",
 						"type" => "select",
 						"class" => "col-sm-6 col-md-3",
@@ -419,7 +419,34 @@ function optionsframework_options() {
 						"options" => array('single' => 'Single', 'double' => 'Double')
 						);
 						
-		
+	$options[] = array( "name" => __('Date', 'eo_theme'),
+						"desc" => "Show post time.",
+						"id" => "pmeta_time",
+						"group" => "Post meta",
+						"class" => "col-sm-6 col-md-4 col-lg-3",
+						"std" => "1",
+						"type" => "checkbox");
+	$options[] = array( "name" => __('Author', 'eo_theme'),
+						"desc" => "Show post author.",
+						"id" => "pmeta_auth",
+						"group" => "Post meta",
+						"class" => "col-sm-6 col-md-4 col-lg-3",
+						"std" => "1",
+						"type" => "checkbox");
+	$options[] = array( "name" => __('Category', 'eo_theme'),
+						"desc" => "Show post category.",
+						"id" => "pmeta_cat",
+						"group" => "Post meta",
+						"class" => "col-sm-6 col-md-4 col-lg-3",
+						"std" => "1",
+						"type" => "checkbox");
+	$options[] = array( "name" => __('Tags', 'eo_theme'),
+						"desc" => "Show post tags.",
+						"id" => "pmeta_tags",
+						"group" => "Post meta",
+						"class" => "col-sm-6 col-md-4 col-lg-3",
+						"std" => "1",
+						"type" => "checkbox");
 						
 /*
 	$options[] = array( "name" => __('Google Analytics has been removed Removed - GA UA code', 'eo_theme'),
@@ -1148,6 +1175,15 @@ function optionsframework_options() {
 						"group" => "Bootswatch Themes",	
 						"class" => "col-sm-6",					
 						"std" => "0",
+						"type" => "checkbox");
+						
+	$options[] = array( "name" => __('Style Superiority', 'eo_theme'),
+						"desc" => "ON if you want selected Bootswatch sub-themes styles (fonts,colors) to override theme options. Otherwise OFF if you want theme settings to override Bootswatch sub-theme. In other words; leave it ON if you'd like the sub-theme as is, turn OFF to customize further based upon the sub-theme.",
+						"id" => "bsw_theme_sup",
+						"group" => "Bootswatch Themes",
+						"class" => "col-sm-6",		
+						"prev" => "bsw_sup.jpg",			
+						"std" => "1",
 						"force_clear" => "hidden-xs",
 						"type" => "checkbox");
 		
@@ -1278,8 +1314,8 @@ function optionsframework_options() {
 						"options" => array("bootstrap" => "Bootstrap", "fontawesome" => "Fontawesome")
 						);*/
 
-	$options[] = array( "name" => __('Load Bootsrap-all-', 'eo_theme'),
-						"desc" => "Really ? Really ??.",
+	$options[] = array( "name" => __('Load Bootsrap.JS -all', 'eo_theme'),
+						"desc" => "Only turn this off if you will load Javascript files individually in the next option.",
 						"id" => "load_bs_fe",
 						"group" => "development",
 						"class" => "col-sm-6 col-md-4 col-lg-3",
@@ -1338,7 +1374,7 @@ function optionsframework_options() {
 						"id" => "top_nav_adm_show",
 						"group" => "Panel Preferences",
 						"class" => "col-md-4",
-						"std" => "hidden-sm",
+						"std" => "always",
 						"options" => array("hidden-sm"=>"Larger screens","hidden"=>"Never","always"=>"Always"),
 						"type" => "select");
 						
@@ -1482,9 +1518,9 @@ function optionsframework_options() {
 	$options[] = array( "name" => __('Test', 'eo_theme'),
 						"icon" => "stats",
 						"type" => "heading");					
-	$options[] = array( "name" => 'Test the BOOTSWATCH theme',
+	$options[] = array( "name" => 'Test the theme',
 					"type" => "info",
-					'desc' => '<a href="'.$tmpuri.'/docs/index.php?page=bswtest" target="_blank" class="tess">Click here to view test page </a>',
+					'desc' => '<a href="'.$tmpuri.'/docs/index.php?page=bswtest" class="btn btn-info" target="_blank" class="tess">Click here to view test page </a>',
 					"id" => "eo_bswtest",
 					"std" => "");	
 					

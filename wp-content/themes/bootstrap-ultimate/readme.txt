@@ -1,4 +1,4 @@
-BOOTSTRAP ULTIMATE - Bootstrap UL
+BOOTSTRAP ULTIMATE - abbr. Bootstrap UL, BS UL
 ===================
 
 Bootstrap (http://getbootstrap.com/ in WP at its finest. 

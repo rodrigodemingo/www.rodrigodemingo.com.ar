@@ -35,12 +35,15 @@ if($cat && $cat != 0) $homeq_args["cat"] = $cat;
 if ( ! empty( $eo_options["home_excl"] ) ) {
 	$excluded_ids = array();
 	$home_excludes = $eo_options["home_excl"];
+	$home_mods = array("high"=>'show_highlights',"caru"=>'show_slider',"feat"=>'show_featurettes');
 	foreach ( $home_excludes as $exc=>$v) {
+		if($v == "1" && $eo_options[$home_mods[$exc]] == "1") {
 				${$exc . '_ids'} = get_transient('eo_'.$exc.'_ids');
 				if(${$exc . '_ids'} && is_array(${$exc . '_ids'}) ) $excluded_ids = array_merge($excluded_ids,${$exc . '_ids'} );
+		}
 	}
 	$excluded_ids = array_unique($excluded_ids);
-	$homeq_args["post__not_in"] = $excluded_ids;
+	if(is_array($excluded_ids) && ! empty ($excluded_ids) ) $homeq_args["post__not_in"] = $excluded_ids;
 }
 
 

@@ -554,10 +554,13 @@ a:hover {
 .site-header h2 a:hover {
 	color: #21759b;
 }
+.site-header h1 a {
+	color: #00BFD2;
+}
 .site-header h1 {
 	font-size: 24px;
 	font-size: 1.714285714rem;
-	line-height: 1.285714286;
+/*	line-height: 1.285714286;*/
 	margin-bottom: 14px;
 	margin-bottom: 1rem;
 }
@@ -565,7 +568,7 @@ a:hover {
 	font-weight: normal;
 	font-size: 13px;
 	font-size: 0.928571429rem;
-	line-height: 1.846153846;
+/*	line-height: 1.846153846;*/
 	color: #757575;
 	font-family: 'Raleway', sans-serif;
 	font-size: 20px;
@@ -574,12 +577,16 @@ a:hover {
 	margin-top: 24px;
 	margin-top: 1.714285714rem;
 }
+#masthead.site-header hgroup {
+    float: left;
+}
 
 /* Navigation Menu */
 .main-navigation {
-	margin-top: 24px;
-	margin-top: 1.714285714rem;
+/*	margin-top: 24px;
+	margin-top: 1.714285714rem;*/
 	text-align: center;
+	float: right;
 }
 .main-navigation li {
 	margin-top: 24px;
@@ -689,6 +696,14 @@ footer[role="contentinfo"] a:hover {
 	margin-bottom: 24px;
 	margin-bottom: 1.714285714rem;
 }
+.entry-header h1.entry-title {
+	background-color: #F6F6F6;
+	font-size: 14px;
+	font-weight: bold;
+	padding: 10px;
+	text-transform: capitalize;
+}
+
 .entry-header img.wp-post-image {
 	margin-bottom: 24px;
 	margin-bottom: 1.714285714rem;
@@ -1482,8 +1497,8 @@ img#wpstats {
 	}
 	.site-header h1 {
 		font-size: 26px;
-		font-size: 1.857142857rem;
-		line-height: 1.846153846;
+		font-size: 1.92rem;
+/*		line-height: 1.846153846;*/
 		margin-bottom: 0;
 	}
 	.main-navigation ul.nav-menu,

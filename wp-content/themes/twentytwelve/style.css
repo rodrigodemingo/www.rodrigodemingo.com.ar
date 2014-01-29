@@ -524,7 +524,8 @@ a:hover {
 .site {
 	padding: 0 24px;
 	padding: 0 1.714285714rem;
-	background-color: #fff;
+/*	background-color: #fff;*/
+	background-color: orange; /* rodrigo */
 }
 .site-content {
 	margin: 24px 0 0;
@@ -555,7 +556,7 @@ a:hover {
 	color: #21759b;
 }
 .site-header h1 a {
-	color: #00BFD2;
+	color: #09394E;
 }
 .site-header h1 {
 	font-size: 24px;
@@ -571,7 +572,7 @@ a:hover {
 /*	line-height: 1.846153846;*/
 	color: #757575;
 	font-family: 'Raleway', sans-serif;
-	font-size: 20px;
+	font-size: 18px;
 }
 .header-image {
 	margin-top: 24px;
@@ -1477,6 +1478,7 @@ img#wpstats {
 		max-width: 960px;
 		max-width: 68.571428571rem;
 		overflow: hidden;
+		background-color: yellow; /* rodrigo */
 	}
 	.site-content {
 		float: left;
@@ -1496,15 +1498,15 @@ img#wpstats {
 		text-align: left;
 	}
 	.site-header h1 {
-		font-size: 26px;
-		font-size: 1.92rem;
+		font-size: 24.2px;
+		font-size: 1.72rem;
 /*		line-height: 1.846153846;*/
 		margin-bottom: 0;
 	}
 	.main-navigation ul.nav-menu,
 	.main-navigation div.nav-menu > ul {
-		border-bottom: 1px solid #ededed;
-		border-top: 1px solid #ededed;
+/*		border-bottom: 1px solid #ededed;
+		border-top: 1px solid #ededed;*/
 		display: inline-block !important;
 		text-align: left;
 		width: 100%;
@@ -1640,6 +1642,7 @@ img#wpstats {
 		margin-bottom: 48px;
 		margin-bottom: 3.428571429rem;
 		box-shadow: 0 2px 6px rgba(100, 100, 100, 0.3);
+		background-color: white; /* rodrigo  luego eliminar*/
 	}
 	body.custom-background-empty {
 		background-color: #fff;

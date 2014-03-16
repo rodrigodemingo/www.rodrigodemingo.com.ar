@@ -561,7 +561,6 @@ a:hover {
 .site-header h1 {
 	font-size: 24px;
 	font-size: 1.714285714rem;
-/*	line-height: 1.285714286;*/
 	margin-bottom: 14px;
 	margin-bottom: 1rem;
 }
@@ -569,7 +568,6 @@ a:hover {
 	font-weight: normal;
 	font-size: 13px;
 	font-size: 0.928571429rem;
-/*	line-height: 1.846153846;*/
 	color: #757575;
 	font-family: 'Raleway', sans-serif;
 	font-size: 18px;
@@ -755,6 +753,15 @@ article.sticky .featured-post {
 .mu_register {
 	line-height: 1.714285714;
 }
+body.page-id-45 .entry-content {
+	position: relative;
+}
+body.page-id-45 .entry-content img {
+	position: absolute;
+	right: 0;
+	top: 0;
+	box-shadow: none;
+}
 .entry-content h1,
 .comment-content h1,
 .entry-content h2,
@@ -783,6 +790,56 @@ article.sticky .featured-post {
 	font-size: 18px;
 	font-size: 1.285714286rem;
 	line-height: 1.6;
+}
+body.page-id-45 .entry-content .left {
+	font-weight: bold;
+}
+body.page-id-45 .entry-content h2.title {
+	color: #21759B;
+	font-size: 4.9em;
+	line-height: 0.8;
+	margin-bottom: 40px;
+	text-transform: uppercase;
+}
+body.page-id-45 .entry-content h2 span {
+	color: #09394E;
+	line-height: 1.2;
+}
+body.page-id-45 .entry-content p {
+	color: #812102;
+	margin: 0;
+}
+body.page-id-45 .entry-content p.copete{
+	font-size: 0.85714286rem;
+	color: #444;
+	width: 70%;
+}
+body.page-id-45 .entry-content .left {
+	max-width: 73%;
+}
+body.page-id-45 .entry-content .left p a {
+	background-color: rgba(0, 0, 0, 0.35);
+	border-radius: 2px;
+	color: inherit;
+	display: inline-block;
+	line-height: 20px;
+	margin: 5px;
+	padding: 8px;
+	text-align: right;
+	text-decoration: none;
+}
+body.page-id-45 .entry-content .left p a:hover {
+	color: #21759B;
+	text-decoration: none;
+}
+.entry-content .right {
+    float: right;
+    margin-right: 200px;
+    margin-top: 90px;
+    max-width: 30%;
+}
+body.page-id-45 .entry-content .right p{
+	font-size: 0.9em;
 }
 .entry-content h3,
 .comment-content h3 {

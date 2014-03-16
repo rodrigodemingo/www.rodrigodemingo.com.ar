@@ -5,9 +5,9 @@
  * Description:  Advanced Security: Password Protection, Anti-Spam, Anti-Exploits, more to come...
  * Author: askapache
  * Contributors: askapache
- * Version: 4.6.8
+ * Version: 4.6.9
  * Requires at least: 2.7
- * Tested up to: 3.5.2
+ * Tested up to: 3.8.1
  * Tags: password, secure, wp-admin, hacked, virus, apache, server, hacker, cracker, protect, spammer, security, admin, username, access, authorization, authentication, spam, hack, login, askapache, htaccess, rewrite, redirect, mod_security, htpasswd
  * WordPress URI: http://wordpress.org/extend/plugins/askapache-debug-viewer/
  * Author URI: http://www.askapache.com/
@@ -642,7 +642,7 @@ function aa_pp_main_page()
 	if($aa_PP['scheme']=='https' && strpos($siteurl.$home,'https://')!==FALSE)$aa_PP['scheme']='http';
 
 	$aa_SIDS = get_option( 'askapache_password_protect_sids' );
-	if (!current_user_can("edit_files"))wp_die("edit_files cap required");
+	if (!current_user_can("manage_options"))wp_die("manage_options cap required");
 
 
 
@@ -1228,7 +1228,7 @@ function aa_pp_view_revision( $id )
 {
 	global $aa_PP;
 
-	if ( !current_user_can( 'edit_plugins' ) )
+	if ( !current_user_can( 'manage_options' ) )
 		wp_die( '<p>' . __( 'You do not have sufficient permissions to edit templates for this blog.' ) . '</p>' );
 
 	$ids = array();
@@ -2753,7 +2753,7 @@ if (is_admin()) :
 
 
 	add_action('admin_menu', 
-						 create_function('','add_options_page("AskApache Password Protection","AA PassPro",8,"'.$_aabf.'","aa_pp_main_page");'));
+						 create_function('','add_options_page("AskApache Password Protection","AA PassPro","manage_options","'.$_aabf.'","aa_pp_main_page");'));
 	
 	
 	add_action("load-{$_aahk}", 

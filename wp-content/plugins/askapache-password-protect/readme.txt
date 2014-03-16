@@ -3,8 +3,8 @@ Contributors: askapache
 Donate link: http://www.askapache.com/donate/
 Tags: password, secure, wp-admin,hacked, virus, exploit, hacker, cracker, protect, spammer, security, admin, username, access, authorization, authentication, spam, hack, login, askapache, htaccess, rewrite, redirect, mod_security, htpasswd
 Requires at least: 2.7
-Tested up to: 3.5
-Stable tag: 4.6.8
+Tested up to: 3.8.1
+Stable tag: 4.6.9
 This plugin Adds Crazy Additional Password Protection and Security to your blog.  
 
 

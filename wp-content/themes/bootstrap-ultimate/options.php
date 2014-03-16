@@ -169,6 +169,24 @@ function optionsframework_options() {
 	    closedir($handle);
 	}
 	
+	$theBgList = array();
+	if ($bghandle = opendir( get_template_directory() . '/rsc/img/patterns' )) {
+	    while (false !== ($file = readdir($bghandle)))
+	    {
+		//	var_dump($file);
+			if ($file!="."&&$file!="..") {
+	        	$bgname = substr($file, 0, strlen($file) - 4);
+				$thumb = get_template_directory_uri() . '/rsc/img/patterns/'.$file;
+				$theBgList[$bgname] = $thumb;
+		//		var_dump($thumb,$bgname);
+			}
+	    }
+			$temp = array('none' => $theBgList['none']);
+			unset($theBgList['none']);
+			$theBgList = $temp + $theBgList;
+	    closedir($bghandle);
+	}
+	
 	//print_r($theList);
 	
 	// fixed or scroll position
@@ -239,7 +257,7 @@ function optionsframework_options() {
 						"std" => "right-sidebar",
 						'type' => 'images',
 						"group" => "layout",
-						"class" => "col-sm-7",
+						"class" => "col-sm-12 col-md-8",
 						"imgclass" => "eo_layoutthumb img-thumbnail col-sm-6 col-md-4 col-lg-3",
 						'desc' => __( 'Select the default layout.', 'eo_theme' ),
 						'options' => array(
@@ -323,6 +341,35 @@ function optionsframework_options() {
 						"type" => "select",
 						"class" => "col-sm-5 nochosen colsel",
 						"options" => eo_col_cl_maker('lg')
+						);
+						
+	$options[] = array( "name" => __('Main bg color', 'eo_theme'),
+						"desc" => "Main body background color.",
+						"id" => "main_bg_color",
+						"group" => "Background",
+						"class" => 'col-sm-6',
+						"prev" => "bgcolors.jpg",
+						"std" => "",
+						"type" => "color");		
+						
+		$options[] = array( "name" => __('Content bg color', 'eo_theme'),
+						"desc" => "Content (Container) background color.",
+						"id" => "cont_bg_color",
+						"group" => "Background",
+						"class" => 'col-sm-6',
+						"std" => "",
+						"prev" => "bgcolors.jpg",
+						"type" => "color");	
+									
+	$options[] = array( "name" => __('Bg Image', 'eo_theme'),
+						"id" => "main_bg_img",
+						"desc" => __('Main background image / pattern.', 'eo_theme'),
+						"group" => "Background",
+						"std" => "none",
+					//	"class" => eo_opt_dept('use_bsw_themes','1'),
+						"type" => "images",
+						"options" => $theBgList,
+						"imgclass" => "eo_bgthumb img-thumbnail col-sm-4 col-md-3 col-lg-2"
 						);
 						
 	$options[] = array( "name" => __('Loop Contents', 'eo_theme'),
@@ -1149,7 +1196,7 @@ function optionsframework_options() {
 						"std" => "1",
 						"type" => "checkbox");
 						
-	$options[] = array( "name" => __('-Comments are closed- message on pages', 'eo_theme'),
+	$options[] = array( "name" => __('Suppress -Comments are closed- message', 'eo_theme'),
 						"desc" => "Suppress 'Comments are closed' message",
 						"id" => "suppress_comments_message",
 						"group" => "others",
@@ -1285,6 +1332,14 @@ function optionsframework_options() {
 						//	"some_other" => "Some Other"
 						)
 					);
+					/*
+		$options[] = array( "name" => __('Use minified JS', 'eo_theme'),
+						"desc" => "Use minified sources for javascripts where available .",
+						"id" => "use_min_res",
+						"std" => "0",
+						"class" => "col-sm-6 col-md-4 col-lg-3",
+						"group" => "development",
+						"type" => "checkbox");*/
 		$options[] = array( "name" => __('Override.css ?', 'eo_theme'),
 						"desc" => "Enable rsc/css/override.css file at the end of <head> so that it overrides everything else.",
 						"id" => "override_css",

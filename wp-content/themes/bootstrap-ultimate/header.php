@@ -33,10 +33,8 @@ global $eo_options,$wpdb,$th_xs_slug;
 		<script type='text/javascript' src='<?php echo get_template_directory_uri()?>/rsc/js/holder.js'></script>
         <?php } ?>
 		<?php if ( is_singular() ) wp_enqueue_script( 'comment-reply' ); ?>
-		<?php wp_head(); ?>
 
 		<!-- theme options from options panel -->
-		<?php  inline_css_fe(); ?>
        <?php if ( $eo_options['use_bsw_themes'] == "1" && $eo_options['bsw_theme'] != "default"  && $eo_options['bsw_theme_sup'] == "1" ) { 
 	    $gl_u = get_template_directory_uri().'/lib/bootstrap/fonts/';
 		?>
@@ -64,11 +62,7 @@ global $eo_options,$wpdb,$th_xs_slug;
 		<link href='http://fonts.googleapis.com/css?family=<?php echo $eo_options['eo_typo_nav']["face"] ?>:<?php echo $eo_options['eo_typo_nav']["variant"] ?>' rel='stylesheet' type='text/css'>
         <?php }
 		// _eo-todo: compact the typography csses ? ?>
-		<?php
-		$ov_cssf = get_template_directory().'/rsc/css/override.css';
-		 if ( $eo_options['override_css']  == "1"  && file_exists($ov_cssf) ) { ?>
-        <link rel='stylesheet' id='override-css'  href='<?php echo get_template_directory_uri()?>/rsc/css/override.css' type='text/css' media='all' />
-        <?php } ?>
+        <?php wp_head(); ?>
 	</head>
 	<body <?php ( of_get_option('nav_position')  == "fixed" ) ? body_class('fixednav') : body_class(); ?>>
 	<div id="wrap"<?php if ( $eo_options['sticky_footer']  == "1" ) echo ' class="stickyf"' ?>>			
@@ -86,7 +80,7 @@ global $eo_options,$wpdb,$th_xs_slug;
 								$blogname = $blogn;
 							}
                          ?>
-                         <?php ( $eo_options['nav_select_menu'] == "1" ) ? $nav_select_hide = ' visible-md visible-lg' : $nav_select_hide = ''; ?>
+                         <?php ( $eo_options['nav_select_menu'] == "1" ) ? $nav_select_hide = ' hidden-xs hidden-sm' : $nav_select_hide = ''; ?>
 
 						<div class="nav-container row">
                                 <?php ( $eo_options['nav_select_menu'] == "1" ) ? $nh_col_cl = 'col-sm-5 col-md-3 col-lg-2' : $nh_col_cl = 'col-sm-3 col-lg-2'; ?>

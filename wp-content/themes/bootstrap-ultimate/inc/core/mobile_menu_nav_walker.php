@@ -1,10 +1,10 @@
 <?php class eo_mobile_Walker_Nav_Menu extends Walker_Nav_Menu {
-  function start_lvl(&$output, $depth) {
+  function start_lvl(&$output, $depth=0, $args=array()) {
 
   //  $indent = str_repeat("\t", $depth);
  //   $output .= "\n$indent<ul class=\"sub-menu dropdown-menu\">\n";
   }
-  function start_el( &$output, $item, $depth, $args ) {
+  function start_el( &$output, $item, $depth=0, $args=array(), $id=0 ) {
 	  global $wp;
 	  	$indent = "- ";
 	  	(strpos($item->title,"[dd-ph]") !== false) ? $is_dd_placeholder = true : $is_dd_placeholder = false;

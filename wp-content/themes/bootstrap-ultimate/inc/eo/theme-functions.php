@@ -78,22 +78,24 @@ if( $eo_options['nav_select_menu'] == "1" )  {
 	require_once(get_template_directory().'/inc/core/mobile_menu_page_walker.php'); // _custom page walker
 	
 	function eo_mobile_nav_menu() {
-		wp_nav_menu(array(
+		$mobnav = wp_nav_menu(array(
 			'container' => false,                           // remove nav container
 			'container_class' => 'menu clearfix',           // class of container (should you choose to use it)
 			'menu' => __( 'The Main Menu', 'bonestheme' ),  // nav name
 			'menu_class' => 'mobile-top-nav clearfix',         // adding custom nav class
 			'theme_location' => 'main-nav',                 // where it's located in the theme
-			'before' => '',                                 // before the menu
+			'before' => '',
+			'echo' => false,                                // echo
 			'after' => '',                                  // after the menu
 			'link_before' => '',                            // before each link
 			'link_after' => '',                             // after each link
 			'depth' => 0,                                   // limit the depth of the nav
-			'items_wrap' => '<div class="row eo-mobile-select-wrap visible-xs visible-sm"><form action="" class="mobile-select-form form-inline"><div class="form-group col-xs-10"><select id="%1$s" class="%2$s nav mobile-navbar-nav eo-mobile-select-nav form-control" name="eo-mobile-select-nav">%3$s</select></div><div class="form-group col-xs-2"><input type="submit" class="ms_gobut form-control" value="Go"></div></form></div>',
+			'items_wrap' => '<div class="row eo-mobile-select-wrap hidden-md hidden-lg"><form action="#" class="mobile-select-form form-inline"><div class="form-group col-xs-10"><select id="%1$s" class="%2$s nav mobile-navbar-nav eo-mobile-select-nav form-control" name="eo-mobile-select-nav">%3$s</select></div><div class="form-group col-xs-2"><input type="submit" class="ms_gobut form-control" value="Go"></div></form></div>',
 			'walker' => new eo_mobile_Walker_Nav_Menu(),
 		//	'show_home' => true,
 			'fallback_cb' => 'eo_mobile_nav_fallback'      // fallback function
 		));
+		echo strip_tags($mobnav, '<div><select><option><form><input>' );
 	}
 	function eo_mobile_page_menu( $args = array() ) {
 		$defaults = array('sort_column' => 'menu_order, post_title', 'menu_class' => 'menu', 'echo' => true, 'link_before' => '', 'link_after' => '');

@@ -9,7 +9,10 @@ $mod_idfs = array("high"=>'highlights',"caru"=>'carousel',"feat"=>'featurettes')
 foreach ($mod_idfs as $mod_idf=>$fnam ) {
 	if( !empty($eo_options[$mod_idf.'_also_disp']) & is_array($eo_options[$mod_idf.'_also_disp']) ) {
 		//var_dump($eo_options[$mod_idf.'_also_disp']);
-		if($eo_options[$mod_idf.'_also_disp'][$post->ID] == "1") eo_get_template_part( 'inc/modules/'.$fnam ); wp_reset_query();		
+		if(array_key_exists($post->ID,$eo_options[$mod_idf.'_also_disp']) && $eo_options[$mod_idf.'_also_disp'][$post->ID] == "1") {
+			eo_get_template_part( 'inc/modules/'.$fnam ); 
+			wp_reset_query();
+		}
 	}
 }
 ?>

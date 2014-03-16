@@ -67,6 +67,32 @@
           </li>
         </ul>
        </div>
+       <div class="media-item col-md-6 col-lg-3">
+         <ul class="media-list">
+          <li class="media">
+            <a class="pull-left" href="#">
+              <img class="media-object" width="64" src="<?php echo get_template_directory_uri().'/rsc/img/ph.jpg' ?>" alt="ph">
+            </a>
+            <div class="media-body">
+              <h4 class="media-heading">Subtle Patterns</h4>
+              For BG patterns.
+            </div>
+          </li>
+        </ul>
+       </div>
+        <div class="media-item col-md-6 col-lg-3">
+         <ul class="media-list">
+          <li class="media">
+            <a class="pull-left" href="#">
+              <img class="media-object" width="64" src="<?php echo get_template_directory_uri().'/rsc/img/ph.jpg' ?>" alt="ph">
+            </a>
+            <div class="media-body">
+              <h4 class="media-heading">The Pattern Library</h4>
+              For BG patterns.
+            </div>
+          </li>
+        </ul>
+       </div>
    </div>
 </div>
  

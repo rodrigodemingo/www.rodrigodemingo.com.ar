@@ -2,7 +2,7 @@
 Theme Name: Bootstrap Ultimate
 Theme URI: http://eodepo.com/bootstrap-ultimate
 Description: The ultimate responsive WP theme; cures your common Bootstrap problems such as nav-menu, pagination etc.Built for speed, both loading-wise & development-wise.Comes packed with distinctive features such as adjustable layout, automatic Google Fonts update, sleek options panel, sub-themes and many built-in extensions; lightbox, font-icons etc.Optional layout per post/page.In short, you can have whatever you want, however you want.
-Version: 1.4.3.3
+Version: 1.4.7.1
 Author: Emin Özlem
 Author URI: http://eodepo.com
 Tags: responsive-layout, black, white, one-column, two-columns, fluid-layout, custom-background, custom-colors, custom-menu, full-width-template, theme-options, translation-ready,left-sidebar,right-sidebar
@@ -185,3 +185,4 @@ dl.gallery-item a.thumbnail {	margin-bottom: 0.4em;}
 #highlights {text-align: center;}
 #content img.wp-smiley {display: inline;}
 span.footmeta {padding-right:0.4em;}
+a#logo_lg {overflow: visible;}

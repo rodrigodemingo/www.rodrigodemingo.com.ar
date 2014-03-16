@@ -180,6 +180,12 @@ function eo_admin_foot_print_jses() {
             $('select#' + this.id.replace('-innherit','') + ' option[value="-1"]').attr('selected', 'selected');
             $('#' + this.id.replace('-innherit','-slider')).fadeOut();
         });
+		$("div#section-main_bg_img img:not([src*='none.jpg'])").click(function(e) {
+            $("body").css("background-image","url(" + $(this).attr("src") + ")" );
+        });
+		$("div#section-main_bg_img img[src*='none.jpg']").click(function(e) {
+            $("body").css("background-image","none" );
+        });
 	});
 	</script>
 <?php
@@ -569,31 +575,6 @@ function eo_output_dismiss_messages() {
 
 	$dismiss_messages = array();
 	
-	$dismiss_messages[] = array( "title" => __('v1.3.9 Info Notice', 'eo_theme'),
-			"desc" => eo_make_dmsg('v139_inf','<span class="glyphicon glyphicon-info-sign"></span> There has been a lot of <em>file changes</em> in <b>version 1.3.9</b>. Module (carousel,featurette,highlight etc) files have been moved from <b>./inc</b> to <b>./inc/modules</b>, so you would better delete the old ones under ./inc to avoid any confusion (./inc/carousel.php, featurettes, highlights, and jumbo).In addition some page templates have been removed (author,search,page), might as well delete them too.
-<div class="alert alert-danger"><h2>Make sure to delete these obsolete files</h2>
-For a consistent view please delete these files:
-<b>
-<ul>
-<li>./inc/carousel.php</li>
-<li>./inc/featurettes.php</li>
-<li>./inc/highlights.php</li>
-<li>./inc/ga.php</li>
-<li>./inc/home-bak.php</li>
-<li>./inc/jumbo.php</li>
-<li>./archive.php</li>
-<li>./author.php</li>
-<li>./attachment.php</li>
-<li>./image.php</li>
-<li>./search.php</li>
-<li>./sidebar-sidebar2.php</li>
-</ul></b></div>			
-Finally please note that markup has changed drastically for main template and page files (index.php, single.php etc..) Consider reviewing these files if you are using child themes<img src="'.get_template_directory_uri().'/panel/rsc/img/modf_change.jpg"'),
-			"class" => 'alert alert-info fadee in',
-			"ver" => '1.3.9',
-		//	"comp" => 'eq'
-			);
-	
 	$dismiss_messages[] = array( "title" => __('Check About tab', 'eo_theme'),
 			"desc" => eo_make_dmsg('visit_tips','Make sure you visit the <b>Tips and Tricks</b> section in the <em>About</em> tab'),
 			"class" => 'alert alert-info fadee in',
@@ -604,11 +585,6 @@ Finally please note that markup has changed drastically for main template and pa
 			"class" => 'alert alert-info fadee in',
 			"ver" => "all"
 			);
-	$dismiss_messages[] = array( "title" => __('Google Analytics has been removed', 'eo_theme'),
-			"desc" => eo_make_dmsg('ga_r_msg','Please note that <b>Google Analytics</b> feature has been removed with this <em>-1.3.0-</em> version.This functionality is <b>not allowed by WP</b> in themes since falls into <b>plugin territory</b> category.'),
-			"class" => 'alert alert-warning fadee in',
-			"ver" => '1.3.0'
-			);	
 	
 	foreach ($dismiss_messages as $dismiss_msg) {
 		//var_dump($dismiss_msg["desc"]);

@@ -164,11 +164,11 @@ function list_pings($comment, $args, $depth) {
 <?php 
 }
 // Only display comments in comment count (which isn't currently displayed in wp-bootstrap, but i'm putting this in now so i don't forget to later)
-add_filter('get_comments_number', 'comment_count', 0);
 function comment_count( $count ) {
 	if ( ! is_admin() ) {
 		global $id;
-	    $comments_by_type = separate_comments(get_comments('status=approve&post_id=' . $id));
+		$comms = get_comments('status=approve&post_id=' . $id);
+	    $comments_by_type = separate_comments($comms);
 	    return count($comments_by_type['comment']);
 	} else {
 	    return $count;
@@ -427,14 +427,14 @@ function eo_theme_head() {
 	}
 	wp_register_style( 'bootstrap-ultimate', get_stylesheet_uri(), array(), '1.0', 'all' );
 	wp_enqueue_style( 'bootstrap-ultimate');
-	if( $use_bsw_theme && $bsw_theme != "default" )	{
+	if( $use_bsw_theme && $bsw_theme != "default" && $eo_options['bsw_theme_sup'] != "1" )	{
 		wp_register_style( 'bsw_theme', get_template_directory_uri() . '/panel/of/themes/' . $bsw_theme . '.css', array("bootstrap"), '1.0', 'all' );
 		wp_enqueue_style( 'bsw_theme' );
 		// Glyphicons get lost when using Bootswatch theme, you need to redefine them, not sure which is better for this fix: another http request or a few lines of ugly inline <style> ?
 	//	wp_register_style( 'missing_glyphs', get_template_directory_uri() . '/rsc/css/missing-glyphicons.css', array("bsw_theme"), '3.0.1', 'all' );
 	//	wp_enqueue_style( 'missing_glyphs' );
 	}
-	else {
+	else if( $use_bsw_theme && $bsw_theme == "default") {
 		wp_register_style( 'default_theme', get_template_directory_uri() . '/child/default/styles.css', array("bootstrap"), '1.0', 'all' );
 		wp_enqueue_style( 'default_theme' );
 	}
@@ -520,6 +520,16 @@ function eo_inline_js_per_post(){
 	}
 }
 add_action('wp_footer','eo_inline_js_per_post');
+add_action('wp_head','eo_override_css',999);
+function eo_override_css(){
+	global $eo_options;
+	$ov_cssf = get_template_directory().'/rsc/css/override.css';
+	if ( $eo_options['override_css']  == "1" && file_exists($ov_cssf) ) { 
+		wp_register_style( 'bsul-override', get_template_directory_uri() . '/lib/chosen/chosen.min.css', array(), '1.0', 'all' );
+		wp_enqueue_style( 'bsul-override' );
+	}
+}
+add_action('wp_head','inline_css_fe',998);
 // Get theme options
 function inline_css_fe(){
 	global $eo_options;
@@ -570,12 +580,12 @@ function inline_css_fe(){
 		  $typo_head = $eo_options['eo_typo_heading'];
 		  if ( array_key_exists("source",$typo_head) && $typo_head["source"] == "gwf_font" ) {    
 			$theme_options_styles .= '
-			h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, h1 a, h2 a, h3 a, h4 a, h5 a, h6 a{		
+			h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{		
 			  font-family: "' . str_replace("+"," ",$typo_head['face'] ). '";';
 		  }
 		  else {
 			$theme_options_styles .= '
-			h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, h1 a, h2 a, h3 a, h4 a, h5 a, h6 a{		
+			h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{		
 			  font-family: ' . str_replace("+"," ",$typo_head['face'] ). ';';
 		  }
 		  if ( array_key_exists("source",$typo_head) && $typo_head["source"] == "gwf_font" ) {
@@ -762,8 +772,10 @@ function inline_css_fe(){
     opacity: 0;
     z-index: 2;
 }';
-		   
 	   }
+	   if( array_key_exists('main_bg_color',$eo_options) && ! empty ($eo_options["main_bg_color"]) ) $theme_options_styles .= 'body {background-color: '.$eo_options["main_bg_color"].'}';
+if( array_key_exists('cont_bg_color',$eo_options) && ! empty ($eo_options["cont_bg_color"]) ) $theme_options_styles .= '#maincnot,#inner-footer {background-color: '.$eo_options["cont_bg_color"].'}';
+if( array_key_exists('main_bg_img',$eo_options) && ! empty ($eo_options["main_bg_img"]) && $eo_options["main_bg_img"] != "none" ) $theme_options_styles .= 'body {background-image: url("'.get_template_directory_uri().'/rsc/img/patterns/'.$eo_options["main_bg_img"].'.jpg")}';
       
       $additional_css = of_get_option( 'eo_custom_css' );
       if( $additional_css ){
@@ -775,6 +787,10 @@ function inline_css_fe(){
         . $theme_options_styles . '
         </style>';
       }
+	  
+	  
+	  
+	// var_dump( array_key_exists('main_bg_img',$eo_options) && ! empty ($eo_options["main_bg_img"]) && $eo_options["main_bg_img"] != "none", $eo_options["main_bg_color"], $eo_options["cont_bg_color"], $eo_options["main_bg_img"] );
     
       $is_bs_test = isset($_REQUEST['bstest']);
 	  
@@ -840,9 +856,14 @@ window.addEventListener("orientationchange", resizeColorBox, false);
  
 	$().next().prepend($(this));
 	// check input & selects for default bootstrap3 class .form-control
-	$("input,select,textarea").each(function(index, element) {
+	$("input:not([type='checkbox']),select,textarea").each(function(index, element) {
 		if(!$(this).hasClass("form-control") ) {
 			$(this).addClass("form-control");
+		}
+	});
+	$("form").each(function(index, element) {
+		if(!$(this).hasClass("form-inline") ) {
+			$(this).addClass("form-inline");
 		}
 	});
 });
@@ -954,27 +975,35 @@ jQuery(document).ready(function($) {
 		
 		    $.getJSON('https://www.googleapis.com/webfonts/v1/webfonts?key=<?php echo $GWF_apikey ?>', function(response,data, textStatus, jqXHR) {
 		//		alert(response);	
-				console.log(response,data, textStatus, jqXHR);
+		//		console.log(response,data, textStatus, jqXHR);
 				//eo_google_font_data(response);
-			}).done(function(response,data, textStatus, jqXHR){
+			}).done(function(response,data, textStatus){
 									var itemz = response.items;
 									var a = itemz;
 									var ptcnt = 0;
-									var totalparts = Math.ceil(itemz.length / 100); 
+									var totalparts = Math.ceil( response.items.length / 50); 
 									while(a.length) {
 										ptcnt++;
-										$('#eo_upd_gwf').html('<span class="glyphicon glyphicon-cloud-download"></span>Updating fonts...');
-									//	console.log(a.splice(0,100));
+										$('#eo_upd_gwf').html('<span class="glyphicon glyphicon-cloud-download"></span>Updating fonts...<br> Please be patient this may take a while');
+								//		console.log(totalparts);
+								//		console.log(ptcnt);
+								//		console.log(a.length);
+								//		console.log(a.splice(0,100).length);
+								//		console.log(a);
+								//		console.log(a.splice(0,100));
 								//		console.log("Sending part#" + ptcnt);
 										var gwf_data = {
 											action: 'eo_gwf_check',
-											gwf_font_data: a.splice(0,100),
+											gwf_font_data: a.splice(0,50),
 											part: ptcnt,
 											totalparts: totalparts
 										};
+								//		console.log(gwf_data);
+								//		console.log(a.length);
+										console.log(ptcnt,totalparts);
 										$.post(ajaxurl, gwf_data,
-										function(response,data, textStatus, jqXHR) {
-										//	console.log(response,data, textStatus, jqXHR);
+										function(response,data, textStatus) {
+										//	console.log(response,data, textStatus);
 										//	$("#section-wpbs_theme").css("background","none");
 										//	alert(response);
 											    if ( response.indexOf('Success') !== -1 ){
@@ -984,22 +1013,23 @@ jQuery(document).ready(function($) {
 												}
 								
 										});
+									//	console.log(a.length);
 									}
 									
 									
 					          var totall = itemz.length; 
-							      console.log( totall  );
+						//	      console.log( totall  );
 				
 					
 						var real_items = [];
 					  $.each( itemz, function( key, val ) {
 						   $.each(val, function( keyy, vall ) {
 							   real_items.push(val.family);
-							   console.log( val.family  );
+						//	   console.log( val.family  );
 						   });
 						//items.push( "<li id='" + key + "'>" + val + "</li>" );
 					  });
-					 console.log( real_items  );
+					// console.log( real_items  );
 					
 				});
 		/*
@@ -1015,64 +1045,6 @@ jQuery(document).ready(function($) {
 	//		 $("#eo_upd_gwf").prop('disabled', false).html('<span class="glyphicon glyphicon-cloud-download"></span>Download / Update  <b>Google Fonts</b>');
 		});*/
 	});
-	$('#check-bootswatch').click( function(){ 
-		$(this).prop('disabled', true);
-		$(this).html('<span class="glyphicon glyphicon-cloud-download"></span>Downloading themes...');
-		$("#section-bsw_theme .option").css("visibility","hidden");
-		$('<div class="alert alert-info" id="themes_loading"><img src="<?php echo get_template_directory_uri().'/panel/rsc/img/loading.gif' ?>" alt="loading" />This may take some time please be patient...You will be alerted when its complete<div class="progress progress-striped active"><div class="progress-bar" id="bsw_themes" role="progressbar" aria-valuenow="6" aria-valuemin="0" aria-valuemax="100" style="width: 6%"><span class="sr-only"Loading..</span></div></div><div class="alert alert-success"><ul id="bsw_down_list"><li>Getting themes..</li></ul><div></div>').insertBefore("#section-bsw_theme .option");
-		function get_bsw_theme() {
-			$.post(ajaxurl, bsw_data, function(data, textStatus, jqXHR) {
-			/*  console.log( "success" );
-			  console.log( bsw_data );
-			  console.log( textStatus );
-			  console.log( jqXHR.responseText );*/
-				var aresp = $.parseJSON(jqXHR.responseText);
-				var perc = aresp.percent;
-				$('#bsw_themes').css('width', perc+'%');
-			    $('#bsw_themes').html(perc+'%');
-			    $('#bsw_themes').data("perc",perc);
-			//  console.log( perc );
-				if( perc == 100 ) {
-					alert(aresp.msg);
-					 $("#themes_loading").remove();
-					 $("#section-bsw_theme .option").css("visibility","visible");
-					 $("#check-bootswatch").prop('disabled', false).html('<span class="glyphicon glyphicon-cloud-download"></span>Download / Check theme updates');
-				}
-				else {
-				function emul_load () {
-					//fake a more realistic loading feeling
-					(function(){
-					var numLow = 600;
-					var numHigh = 800;
-					var adjustedHigh = (parseFloat(numHigh) - parseFloat(numLow)) + 1;
-					var loademulsec = Math.floor(Math.random()*adjustedHigh) + parseFloat(numLow);
-					var currw = $('#bsw_themes').width();
-					var currv = parseInt($('#bsw_themes').text().replace("%",""));
-					var p11 = parseInt(aresp.p1);
-					//var loademulsec = Math.ceil(Math.random() * 200) + 4;
-					var nextperc = 	$('#bsw_themes').css('width');
-					if (  currv < perc + p11) {
-						$('#bsw_themes').css('width', (currv+1) + '%');
-						$('#bsw_themes').html((currv + 1) + '%');
-						setTimeout(emul_load, loademulsec);
-					}
-					})();
-				}
-					emul_load();
-					get_bsw_theme();
-				//	emul_load();
-					$("ul#bsw_down_list").append("<li><span class='glyphicon glyphicon-check'></span> Theme " + aresp.indexval + " of "+ aresp.total +" - <b> " + aresp.name + " </b>downloaded successfully</li>");
-				}
-//			  console.log( jqXHR.responseText );
-			}).done(function() {
-			  })
-			  .fail(function() {
-			  })
-			  .always(function() {
-			});
-		};
-		get_bsw_theme();
-	});
 });
 </script>
 <?php
@@ -1085,6 +1057,7 @@ function eo_opt_check_js($opt,$dept) {
 	return ($opt == $dept) ? true : false;
 }
 function eo_google_font_check() {
+	global $wpdb;
 	delete_transient( 'eo_comb_faces_trans');
 	$GWF_apikey = of_get_option( 'google_wf_apikey' );
 	$all_font_opt = get_option('eo_all_fonts_arr');
@@ -1096,7 +1069,28 @@ function eo_google_font_check() {
 		die("Error - reason :" . $err_reason );
 	}
 	else {
-		if( isset($_POST["gwf_font_data"]) && is_array($_POST["gwf_font_data"]) && isset($_POST["part"]) && isset($_POST["totalparts"]) ) {
+		
+		//clean up old parts
+	/*	if ( is_multisite() ) {
+			$all_sites = $wpdb->get_results( "SELECT * FROM $wpdb->blogs" );
+			if ( $all_sites ) {
+				foreach ($all_sites as $site) {
+					$wpdb->set_blog_id( $site->blog_id );
+					$wpdb->query( "DELETE FROM `{$wpdb->prefix}options` WHERE `option_name` LIKE ('_transient_eo_google_fnt_upd_part%')" );
+				}
+			}
+		}
+		else {
+			$wpdb->query( "DELETE FROM `{$wpdb->prefix}options` WHERE `option_name` LIKE ('_transient_eo_google_fnt_upd_part%')" );
+			$wpdb->query( "DELETE FROM `{$wpdb->prefix}options` WHERE `option_name` LIKE ('_transient_timeout_eo_google_fnt_upd_part%')" );
+			$wpdb->query( "DELETE FROM `{$wpdb->prefix}options` WHERE `option_name` LIKE ('_transient_eo_google_fnt_upd_trans%')" );
+			$wpdb->query( "DELETE FROM `{$wpdb->prefix}options` WHERE `option_name` LIKE ('_transient_timeout_eo_google_fnt_upd_trans%')" );
+			
+		//	die("Transients deleted");
+		}*/
+		
+		
+		if( isset($_POST["gwf_font_data"]) && isset($_POST["part"]) && isset($_POST["totalparts"]) ) {
 			$pt = $_POST["part"];
 			$lastpt = $_POST["totalparts"];
 			$beforelast = get_transient('eo_google_fnt_upd_part'.$lastpt-1);
@@ -1105,7 +1099,9 @@ function eo_google_font_check() {
 				set_transient('eo_google_fnt_upd_trans_pt'.$pt, $_POST["gwf_font_data"], 60 * 4);
 			}
 			else {
-				sleep(2);
+			//	die($_POST["part"] ."and". $_POST["totalparts"] );
+
+				sleep(1);
 			//	die("last partt" );
 				$merged_parts = array();
 				for ($i = 1; $i <= $pt; $i++) {
@@ -1115,7 +1111,7 @@ function eo_google_font_check() {
 					}
 					else {
 						$another_pt = get_transient('eo_google_fnt_upd_trans_pt'.$i);
-						$merged_parts = array_merge($merged_parts,$another_pt);
+						if( is_array($another_pt) ) $merged_parts = array_merge($merged_parts,$another_pt);
 				//		set_transient('joined_parts', $merged_parts, 60 * 4);
 					}
 				}
@@ -1170,6 +1166,10 @@ function eo_google_font_check() {
 					$lastModified = $gf_item['lastModified'];
 				//	var_dump($json);
 				}*/
+		}
+		else {
+			var_dump($_POST["gwf_font_data"],$_POST["part"],$_POST["totalparts"] );
+			die("Someting is amiss.");
 		}
 		//echo $result;
 	}
@@ -1352,10 +1352,10 @@ function eo_theme_admin_toolbar_menu( $wp_admin_bar ) {
 	$wp_admin_bar->add_node( $args );
 }
  
-if( array_key_exists("loop_whtd",$eo_options) ) add_action( 'pre_get_posts', 'eo_query_modif' );
+add_action( 'pre_get_posts', 'eo_query_modif' );
 function eo_query_modif( $query ) {
 	global $eo_options;
-	
+	if ( array_key_exists("loop_whtd",$eo_options) ) return;
 	$wtd = $eo_options['loop_whtd'];
 	if(! empty($wtd) && $query->is_main_query() && !is_admin() && ! is_singular() && ! is_404()) {
 		$my_post_type = get_query_var( 'post_type' );
@@ -1422,9 +1422,9 @@ function eo_post_clses($classes) {
 add_filter('post_class', 'eo_post_clses');
 /* TODO LIST
 _eo-todo: code-cleanup
+_eo-todo: Extend Background patterns
 _eo-todo: Sort Google fonts by -last modified/updated-
 _eo-todo: Pinned posts
-_eo-todo: Backgrounds -Subtle Patterns - ?
 _eo_todo: Option to enable / disable widgets per page get_option('sidebars_widgets')
 _eo-todo: Reorganize options
 _eo-todo: Stackable / dismissable options
@@ -1438,6 +1438,7 @@ _eo-todo: Better docs ?
 _eo-todo: Look for / build a child theme repository like Bootswatch ?
 _eo-todo: Check font selects for no-js
 DONE LIST
+_eo-todo: Backgrounds - patterns options
 _eo-todo: bugfix; multiple word families variants not loading online, but loading in localhost... Advent+Pro 
 _eo-todo: Options Import / Export ?
 _eo-todo: adjustable layout - main-sidebar colum widths, multiple sidebar

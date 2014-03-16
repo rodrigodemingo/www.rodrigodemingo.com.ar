@@ -1,3 +1,27 @@
+v.1.4.7.1
+*Validation fixes.
+
+v.1.4.7
+*Fixed: Issues that doesnt comply with theme guidelines mentioned in #16817
+*Bugfix: Google Fonts Update.
+
+v.1.4.6
+*Update: Bootstrap update to 3.1.1
+*Removed: Redirect on theme activation to comply with new theme guidelines.
+*Bugfix: Main bg image wrong default option & minor fixes.
+
+v.1.4.5
+*Added: Custom Background patterns, removed Custom Background support in customizer.
+*Bugfix: Missing mobile menu on extra small-xs- screens due to a bug (IMO) in bootstrap 3.1.0
+*Bugfix: Markup Valdition (Mobile menu extra </li>).
+*Bugfix: Post meta options not applying to single mode.
+
+v.1.4.4
+*Added: 3 new sub Bootswatch themes; Superhero, Lumen & valentine special; Cupid.
+*Update: Bootstrap lib update.
+*Bugfix: php 5.4 strict warnings.
+*Various other minor fixes
+
 v.1.4.3.3
 *Added: Style superiority option for bootswatch themes to choose whether should Bootswatch sub-theme override the theme styles , or the other way around.
 

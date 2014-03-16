@@ -62,7 +62,7 @@ $current_user = wp_get_current_user();
 	<?php
 		$suppress_comments_message = of_get_option('suppress_comments_message');
 
-		if (is_page() && $suppress_comments_message) :
+		if ($suppress_comments_message) :
 	?>
 			
 		<?php else : ?>

@@ -50,7 +50,7 @@ function optionsframework_load_scripts_custom() {
 	}
 
 	// Enqueue custom option panel JS
-	wp_enqueue_script( 'options-custom', get_template_directory_uri() . '/panel/of/js/options-custom.js', array( 'jquery','wp-color-picker' ) );
+//	wp_enqueue_script( 'options-custom', get_template_directory_uri() . '/panel/of/js/options-custom.js', array( 'jquery','wp-color-picker' ) );
 
 	// Inline scripts from options-interface.php
 }

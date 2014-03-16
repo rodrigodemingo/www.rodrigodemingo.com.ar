@@ -54,7 +54,7 @@ $lsiz = $eo_options["loop_siz"];
   
   <footer>
       <div class="post_meta"> 
-     <?php if($eo_options["pmeta_time"] == "1") { ?><span class="footmeta ptime"><time datetime="<?php the_time('Y-m-j'); ?>" pubdate><span class="glyphicon glyphicon-time"></span><?php echo get_the_date('Y-m-d'); ?></time></span><?php } ?>
+     <?php if($eo_options["pmeta_time"] == "1") { ?><span class="footmeta ptime"><time datetime="<?php the_time('Y-m-j'); ?>"><span class="glyphicon glyphicon-time"></span><?php echo get_the_date('Y-m-d'); ?></time></span><?php } ?>
      <?php if($eo_options["pmeta_auth"] == "1") { ?><span class="footmeta pauth"><?php _e("by", "bonestheme"); ?> <?php the_author_posts_link(); ?></span><?php } ?>
      <?php if($eo_options["pmeta_cat"] == "1") { ?><span class="footmeta pcat"><?php _e("filed under", "bonestheme"); ?> <?php the_category(', '); ?>.</span><?php } ?>
 	<?php if($eo_options["pmeta_tags"] == "1") { ?><span class="footmeta ptags tags"><span class="glyphicon glyphicon-tags"></span><?php the_tags('<span class="tags-title">' . __("Tags", "bonestheme") . ':</span> ', ' ', ''); ?></span><?php } ?>

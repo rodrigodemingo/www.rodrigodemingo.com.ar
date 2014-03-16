@@ -26,7 +26,7 @@ if( $eo_options["sticky_footer"] == "1" ) echo "</div></div>";
 						if ($eo_options["foot_linkback"]) {
 						?>
                         
-                        <a href="http://eodepo.com/bootstrap-ultimate" title="Bootstrap 3 theme for Wordpress" target="_blank"> Bootstrap UL</a> by <a href="http://eminozlem.com" title="Emin Ozlem - WP / b2 freelancer">eo</a></span>
+                        <a href="http://eodepo.com/bootstrap-ultimate" title="Bootstrap 3 theme for Wordpress" target="_blank"> Bootstrap UL</a>
                         </p><?php } // foot_linkback?>
                 
                         <p class="attribution">&copy; 
@@ -49,9 +49,6 @@ if( $eo_options["sticky_footer"] == "1" ) echo "</div></div>";
                 <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>
                 <script>window.attachEvent('onload',function(){CFInstall.check({mode:'overlay'})})</script>
             <![endif]-->
-            
-            <?php wp_footer(); // js scripts are inserted using this function ?>
-			<?php if(  $eo_options["sticky_footer"] != "1" ) { ?> </div><!-- end #wrap --><?php  } ?> 
-        <?php // get_template_part('inc/ga') ?>
+       <?php wp_footer(); // js scripts are inserted using this function ?>
 	</body>
 </html>

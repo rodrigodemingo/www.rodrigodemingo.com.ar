@@ -28,11 +28,6 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 // initial redirect on activation
 global $pagenow,$theme_slug;
-if ( is_admin() && isset( $_GET['activated'] ) && $pagenow == 'themes.php' ) {
-	// Call action that sets.
-	$t_adm_url = admin_url( 'themes.php?page='.$theme_slug.'&init_refreshed=yes' );
-	header("Refresh: 1; url=$t_adm_url");
-}
 
 $eoinc_path = get_template_directory() . '/inc/eo/';
 require_once($eoinc_path . 'eo_bones.php');            // bones basic

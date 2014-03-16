@@ -171,10 +171,10 @@ function bones_theme_support() {
 	add_theme_support( 'post-thumbnails' );
 
 	// default thumb size
-	set_post_thumbnail_size(125, 125, true);
+	set_post_thumbnail_size(150, 150, true);
 
 	// wp custom background (thx to @bransonwerner for update)
-	add_theme_support( 'custom-background',
+/*	add_theme_support( 'custom-background',
 		array(
 		'default-image' => '',  // background image default
 		'default-color' => '', // background color default (dont add the #)
@@ -182,7 +182,7 @@ function bones_theme_support() {
 		'admin-head-callback' => '',
 		'admin-preview-callback' => ''
 		)
-	);
+	);*/
 
 	// rss thingy
 	add_theme_support('automatic-feed-links');

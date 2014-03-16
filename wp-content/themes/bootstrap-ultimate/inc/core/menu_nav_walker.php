@@ -1,10 +1,10 @@
 <?php class eo_Walker_Nav_Menu extends Walker_Nav_Menu {
-  function start_lvl(&$output, $depth) {
+  function start_lvl(&$output, $depth=0, $args=array()) {
 
     $indent = str_repeat("\t", $depth);
     $output .= "\n$indent<ul class=\"sub-menu dropdown-menu\">\n";
   }
-  function start_el( &$output, $item, $depth, $args ) {
+  function start_el( &$output, $item, $depth=0, $args=array(), $id=0 ) {
 	  	$indent = ( $depth ) ? str_repeat( "\t", $depth ) : '';
 		$class_names = $value = '';
 	  	  //	var_dump($item->title);
@@ -80,11 +80,9 @@
 		$item_output .= $args->after;
 		
 		if( $is_dd_placeholder) $item_output = str_replace("[dd-ph]","",$item_output);
-		
-		
-		$output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
+//		  function start_el( &$output, $item, $depth, $args, $id=0 ) {
 
-	  
+		$output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args, $id );
   }
 }
 ?>

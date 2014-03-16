@@ -1030,7 +1030,7 @@ img.aligncenter,
 	padding: 6px 10px 6px 0;
 }
 .site-content article {
-	border-bottom: 4px double #ededed;
+/*	border-bottom: 4px double #ededed;*/
 	margin-bottom: 72px;
 	margin-bottom: 5.142857143rem;
 	padding-bottom: 24px;
@@ -1140,7 +1140,10 @@ article.format-aside p:last-child {
 
 /* =Post formats
 -------------------------------------------------------------- */
-
+/* Video SWF posts */
+ .entry-content .video {
+	margin:0 24px 12px 0;
+}
 /* Image posts */
 article.format-image footer h1 {
 	font-size: 13px;

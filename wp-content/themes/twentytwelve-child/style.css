@@ -1030,7 +1030,7 @@ img.aligncenter,
 	padding: 6px 10px 6px 0;
 }
 .site-content article {
-/*	border-bottom: 4px double #ededed;*/
+	/*border-bottom: 4px double #ededed;*/
 	margin-bottom: 72px;
 	margin-bottom: 5.142857143rem;
 	padding-bottom: 24px;
@@ -1039,6 +1039,10 @@ img.aligncenter,
 	-webkit-hyphens: auto;
 	-moz-hyphens: auto;
 	hyphens: auto;
+}
+.site-content article.category-projects .entry-content p img.alignleft {
+	margin-bottom: 40px;
+	border: 4px double #ededed;
 }
 .page-links {
 	clear: both;
@@ -1140,10 +1144,6 @@ article.format-aside p:last-child {
 
 /* =Post formats
 -------------------------------------------------------------- */
-/* Video SWF posts */
- .entry-content .video {
-	margin:0 24px 12px 0;
-}
 /* Image posts */
 article.format-image footer h1 {
 	font-size: 13px;
@@ -1159,7 +1159,6 @@ article.format-image footer h2 {
 article.format-image footer a h2 {
 	font-weight: normal;
 }
-
 /* Link posts */
 article.format-link header {
 	padding: 0 10px;

@@ -363,7 +363,7 @@ img.header-image,
 img.wp-post-image {
 	/* Add fancy borders to all WordPress-added images but not things like badges and icons and the like */
 	border-radius: 3px;
-	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+/*	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);*/
 }
 .wp-caption {
 	max-width: 100%; /* Keep wide captions from overflowing their container. */
@@ -758,7 +758,7 @@ body.page-id-45 .entry-content {
 	position: relative;
 }
 body.page-id-45 .entry-content img {
-	position: absolute;
+	/*position: absolute;*/
 	right: 0;
 	top: 0;
 	box-shadow: none;

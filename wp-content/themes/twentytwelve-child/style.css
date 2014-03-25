@@ -525,8 +525,7 @@ a:hover {
 .site {
 	padding: 0 24px;
 	padding: 0 1.714285714rem;
-/*	background-color: #fff;*/
-	background-color: orange; /* rodrigo */
+	background-color: #fff;
 }
 .site-content {
 	margin: 24px 0 0;
@@ -791,42 +790,45 @@ article.sticky .featured-post {
 	font-size: 1.285714286rem;
 	line-height: 1.6;
 }
- .entry-content .left {
+.entry-content .left {
 	font-weight: bold;
 }
- .entry-content p.title {
+.entry-content p.title {
 	color: #21759B;
 	font-family: arial;
-	font-size: 8em;
-	font-weight: 900;
 	line-height: 0.8;
 	text-transform: uppercase;
+	font-weight: 900;
 }
- .entry-content p.title span {
+body.page-id-45 .entry-content p.title {
+	font-size: 4.2em;
+}
+body.page-id-45 .entry-content .leftheader{
+	float: left;
+}
+body.page-id-45 .entry-content p.title span {
  	color: #09394E;
  }
- .entry-content p.subtitle{
+body.page-id-45 .entry-content p.subtitle{
 	font-size: 0.85714286rem;
 	color: #812102;
 }
- .entry-content p.copete{
+body.page-id-45 .entry-content p.copete{
 	font-size: 0.957rem;
 	color: #444;
 	width: 70%;
 }
- .entry-content p {
-	color: #812102;
+body.page-id-45 .entry-content p {
 	margin: 0;
 }
- .entry-content p a {
+body.page-id-45 .entry-content p a {
 	background-color: #FF412C;
 	border-radius: 2px;
 	color: #FFFFFF;
 	padding: 8px;
 	text-decoration: none;
-	margin-left: 44%;
 }
- .entry-content p a:hover {
+body.page-id-45 .entry-content p a:hover {
 	background-color: #09394E;
 }
 .entry-content h3,
@@ -860,6 +862,10 @@ article.sticky .featured-post {
 	margin: 0 0 24px;
 	margin: 0 0 1.714285714rem;
 	line-height: 1.714285714;
+}
+body.page-id-45 article#post-45.post-45 .entry-content p.button {
+	text-align: center;
+	margin: 20px;
 }
 .entry-content a:visited,
 .comment-content a:visited {
@@ -954,13 +960,13 @@ article.sticky .featured-post {
 }
 img.alignleft,
 .wp-caption.alignleft {
-	margin: 12px 24px 12px 0;
-	margin: 0.857142857rem 1.714285714rem 0.857142857rem 0;
+	margin: 0 24px 12px 0;
+	margin: 0 1.714285714rem 0.857142857rem 0;
 }
 img.alignright,
 .wp-caption.alignright {
-	margin: 12px 0 12px 24px;
-	margin: 0.857142857rem 0 0.857142857rem 1.714285714rem;
+	margin: 0px 0 12px 24px;
+	margin: 0 0 0.857142857rem 1.714285714rem;
 }
 img.aligncenter,
 .wp-caption.aligncenter {
@@ -1509,8 +1515,26 @@ img#wpstats {
 	width: device-width;
 }
 
+
 /* Minimum width of 600 pixels. */
 @media screen and (min-width: 600px) {
+	.site {
+		background-color: pink;
+	}
+	body.page-id-45 .entry-content .leftheader{
+	overflow: hidden;
+	width: 100%;
+	float: none;
+	}
+	body.page-id-45 .entry-content p.title {
+		font-size: 6em;
+	}
+}
+/* END Minimum width of 600 pixels. */
+
+
+/* Minimum width of 960 pixels. */
+@media screen and (min-width: 960px) {
 	.author-avatar {
 		float: left;
 		margin-top: 8px;
@@ -1525,7 +1549,7 @@ img#wpstats {
 		max-width: 960px;
 		max-width: 68.571428571rem;
 		overflow: hidden;
-		background-color: pink; /* rodrigo */
+		background-color: orange; /* rodrigo */
 	}
 	.site-content {
 		float: left;
@@ -1674,34 +1698,16 @@ img#wpstats {
 		margin-left: 48px;
 		margin-left: 3.428571429rem;
 	}
-}
-
-/* Minimum width of 960 pixels. */
-@media screen and (min-width: 960px) {
-	body {
-		background-color: #e6e6e6;
+	body.page-id-45 .entry-content p.title {
+		font-size: 8em;
 	}
-	body .site {
-		padding: 0 40px;
-		padding: 0 2.857142857rem;
-		margin-top: 48px;
-		margin-top: 3.428571429rem;
-		margin-bottom: 48px;
-		margin-bottom: 3.428571429rem;
-		box-shadow: 0 2px 6px rgba(100, 100, 100, 0.3);
-		background-color: white; /* rodrigo  luego eliminar*/
-	}
-	body.custom-background-empty {
-		background-color: #fff;
-	}
-	body.custom-background-empty .site,
-	body.custom-background-white .site {
-		padding: 0;
-		margin-top: 0;
-		margin-bottom: 0;
-		box-shadow: none;
+	body.page-id-45 .entry-content .leftheader{
+		overflow: hidden;
+		width: 100%;
+		float: none;
 	}
 }
+/* END Minimum width of 960 pixels. */
 
 
 /* =Print

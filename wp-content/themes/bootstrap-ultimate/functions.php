@@ -378,6 +378,9 @@ function add_active_class($classes, $item) {
 // enqueue styles
 function eo_theme_head() {
 	global $eo_options; 
+	$use_bsw_theme = of_get_option( 'use_bsw_themes' );
+	$bsw_theme = of_get_option( 'bsw_theme' );
+	
 	if( of_get_option( 'use_less') === "1" ) {
 	// Have resources can be loaded less but chose regular css way
 		// Less sources
@@ -404,7 +407,7 @@ function eo_theme_head() {
 		wp_enqueue_script('less_js');	
 		
 	}
-	else {
+	else if( ! $use_bsw_theme || $use_bsw_theme && $bsw_theme == "default") {
 			//var_dump(of_get_option( 'load_bs_fe') );
 	//	if( of_get_option( 'load_bs_fe') == "1" ) {
 					( of_get_option('use_bs_min_fe') == "1" ) ? $min = ".min" : $min = '' ;
@@ -413,8 +416,7 @@ function eo_theme_head() {
 	//	}
 		
 	}
-	$use_bsw_theme = of_get_option( 'use_bsw_themes' );
-	$bsw_theme = of_get_option( 'bsw_theme' );
+
 	if( of_get_option( 'use_fontawesome') == "1" ) {
 	//	( of_get_option('use_bs_min_css') == "1") ? $min = ".min" : $min = '' ;
 		wp_register_style( 'fontawesome', get_template_directory_uri() . '/lib/font-awesome/css/font-awesome.min.css', array(), '1.0', 'all' );
@@ -428,13 +430,13 @@ function eo_theme_head() {
 	wp_register_style( 'bootstrap-ultimate', get_stylesheet_uri(), array(), '1.0', 'all' );
 	wp_enqueue_style( 'bootstrap-ultimate');
 	if( $use_bsw_theme && $bsw_theme != "default" && $eo_options['bsw_theme_sup'] != "1" )	{
-		wp_register_style( 'bsw_theme', get_template_directory_uri() . '/panel/of/themes/' . $bsw_theme . '.css', array("bootstrap"), '1.0', 'all' );
+		wp_register_style( 'bsw_theme', get_template_directory_uri() . '/panel/of/themes/' . $bsw_theme . '.css', array(), '1.0', 'all' );
 		wp_enqueue_style( 'bsw_theme' );
 		// Glyphicons get lost when using Bootswatch theme, you need to redefine them, not sure which is better for this fix: another http request or a few lines of ugly inline <style> ?
 	//	wp_register_style( 'missing_glyphs', get_template_directory_uri() . '/rsc/css/missing-glyphicons.css', array("bsw_theme"), '3.0.1', 'all' );
 	//	wp_enqueue_style( 'missing_glyphs' );
 	}
-	else if( $use_bsw_theme && $bsw_theme == "default") {
+	else if( $use_bsw_theme && $bsw_theme == "default" ) {
 		wp_register_style( 'default_theme', get_template_directory_uri() . '/child/default/styles.css', array("bootstrap"), '1.0', 'all' );
 		wp_enqueue_style( 'default_theme' );
 	}
@@ -520,12 +522,24 @@ function eo_inline_js_per_post(){
 	}
 }
 add_action('wp_footer','eo_inline_js_per_post');
-add_action('wp_head','eo_override_css',999);
+
+add_action('wp_head','eo_bswthemesup',999);
+function eo_bswthemesup(){
+	global $eo_options;
+	$use_bsw_theme = of_get_option( 'use_bsw_themes' );
+	$bsw_theme = of_get_option( 'bsw_theme' );
+	if( $use_bsw_theme && $bsw_theme != "default" && $eo_options['bsw_theme_sup'] == "1" )	{
+		wp_register_style( 'bsw_theme', get_template_directory_uri() . '/panel/of/themes/' . $bsw_theme . '.css', array(), '1.0', 'all' );
+		wp_enqueue_style( 'bsw_theme' );
+	}
+}
+
+add_action('wp_head','eo_override_css',1000);
 function eo_override_css(){
 	global $eo_options;
 	$ov_cssf = get_template_directory().'/rsc/css/override.css';
 	if ( $eo_options['override_css']  == "1" && file_exists($ov_cssf) ) { 
-		wp_register_style( 'bsul-override', get_template_directory_uri() . '/lib/chosen/chosen.min.css', array(), '1.0', 'all' );
+		wp_register_style( 'bsul-override', get_template_directory_uri() . '/rsc/css/override.css', array(), '1.0', 'all' );
 		wp_enqueue_style( 'bsul-override' );
 	}
 }

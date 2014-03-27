@@ -77,81 +77,71 @@ $current_user = wp_get_current_user();
 <?php endif; ?>
 
 
-<?php if ( comments_open() ) : ?>
-
-<section id="respond" class="respond-form">
-
-	<h3 id="comment-form-title"><?php comment_form_title( __("Leave a Reply", "bonestheme"), __("Leave a Reply to", "bonestheme") . ' %s' ); ?></h3>
-
-	<div id="cancel-comment-reply">
-		<p class="small"><?php cancel_comment_reply_link( __("Cancel", "bonestheme") ); ?></p>
-	</div>
-
-	<?php if ( get_option('comment_registration') && !is_user_logged_in() ) : ?>
-  	<div class="help">
-  		<p><?php _e("You must be", "bonestheme"); ?> <a href="<?php echo wp_login_url( get_permalink() ); ?>"><?php _e("logged in", "bonestheme"); ?></a> <?php _e("to post a comment", "bonestheme"); ?>.</p>
-  	</div>
-	<?php else : ?>
-
-	<form action="<?php echo get_option('siteurl'); ?>/wp-comments-post.php" method="post" class="form-vertical form-inline" id="commentform">
-
-	<?php if ( is_user_logged_in() ) : ?>
-
-	<p class="comments-logged-in-as"><?php _e("Logged in as", "bonestheme"); ?> <a href="<?php echo get_option('siteurl'); ?>/wp-admin/profile.php"><?php echo $current_user->user_login;; ?></a>. <a href="<?php echo wp_logout_url(get_permalink()); ?>" title="<?php _e("Log out of this account", "bonestheme"); ?>"><?php _e("Log out", "bonestheme"); ?> &raquo;</a></p>
-
-	<?php else : ?>
+<?php if ( comments_open() ) {
+	$commenter = wp_get_current_commenter();
+	$req = get_option( 'require_name_email' );
+	$aria_req = ( $req ? " aria-required='true'" : '' );
 	
-	<ul id="comment-form-elements" class="col-xs-6 col-md-6">
-		
-		<li>
-			<div class="form-group">
-			  <label for="author"><?php _e("Name", "bonestheme"); ?> <?php if ($req) echo "(required)"; ?></label>
-			  <div class="input-group">
-			  	<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span><input class="form-control" type="text" name="author" id="author" value="<?php echo esc_attr($comment_author); ?>" placeholder="<?php _e("Your Name", "bonestheme"); ?>" tabindex="1" <?php if ($req) echo "aria-required='true'"; ?> />
-			  </div>
-		  	</div>
-		</li>
-		
-		<li>
-			<div class="form-group">
-			  <label for="email"><?php _e("Mail", "bonestheme"); ?> <?php if ($req) echo "(required)"; ?></label>
-			  <div class="input-group">
-			  	<span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span><input class="form-control" type="email" name="email" id="email" value="<?php echo esc_attr($comment_author_email); ?>" placeholder="<?php _e("Your Email", "bonestheme"); ?>" tabindex="2" <?php if ($req) echo "aria-required='true'"; ?> />
-			  </div>
-              <span class="help-block">(<?php _e("will not be published", "bonestheme"); ?>)</span>
-		  	</div>
-		</li>
-		
-		<li>
-			<div class="form-group">
-			  <label for="url"><?php _e("Website", "bonestheme"); ?></label>
-			  <div class="input-group">
-			  <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span><input class="form-control" type="url" name="url" id="url" value="<?php echo esc_attr($comment_author_url); ?>" placeholder="<?php _e("Your Website", "bonestheme"); ?>" tabindex="3" />
-			  </div>
-		  	</div>
-		</li>
-		
-	</ul>
-
-	<?php endif; ?>
+	$comm_args = array(
+	  'id_form'           => 'commentform',
+	  'id_submit'         => 'defsubmit',
+	  'title_reply'       => __( 'Leave a Reply' ),
+	  'title_reply_to'    => __( 'Leave a Reply to %s' ),
+	  'cancel_reply_link' => __( 'Cancel Reply' ),
+	  'label_submit'      => __( 'Post Comment' ),
 	
-	<div id="comment_input" class="col-xs-6 col-md-6">
-		<textarea class="form-control" name="comment" id="comment" placeholder="<?php _e("Your Comment Here…", "bonestheme"); ?>" tabindex="4"></textarea>
-        <div class="form-actions">
-          <input class="btn btn-primary" name="submit" type="submit" id="submit" tabindex="5" value="<?php _e("Submit Comment", "bonestheme"); ?>" />
-          <?php comment_id_fields(); ?>
-        </div>
-	</div>	
+	  'must_log_in' => '<p class="must-log-in">' .
+		sprintf(
+		  __( 'You must be <a href="%s">logged in</a> to post a comment.' ),
+		  wp_login_url( apply_filters( 'the_permalink', get_permalink() ) )
+		) . '</p>',
 	
-	<?php 
-		//comment_form();
-		do_action('comment_form()', $post->ID); 
+	  'logged_in_as' => '<p class="logged-in-as">' .
+		sprintf(
+		__( 'Logged in as <a href="%1$s">%2$s</a>. <a href="%3$s" title="Log out of this account">Log out?</a>' ),
+		  admin_url( 'profile.php' ),
+		  $user_identity,
+		  wp_logout_url( apply_filters( 'the_permalink', get_permalink( ) ) )
+		) . '</p>',
 	
-	?>
+	  'comment_notes_before' => '<div class="col-sm-6 col-lg-5">',
+	  
+	  /*'<p class="comment-notes">' .
+		__( 'Your email address will not be published.' ) . ( $req ? __( 'Required' ) : '' ) .
+		'</p>',*/
 	
-	</form>
+	  'fields' => apply_filters( 'comment_form_default_fields', array(
 	
-	<?php endif; // If registration required and not logged in ?>
-</section>
-
-<?php endif; // if you delete this the sky will fall on your head ?>
+		'author' =>
+		  '<div class="form-group">' .
+		  '<label for="author">' . __( 'Name', 'domainreference' ) . ( $req ? '<span class="required"><abbr title="'.  __( 'Required' )  .'"> *</abbr></span>' : '' ) . '</label> ' .
+		  '<div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>' .
+		  '<input id="author" name="author" class="form-control" type="text" value="' . esc_attr( $commenter['comment_author'] ) .
+		  '" size="30" placeholder="'. __("Your Name", "eotheme") .'" tabindex="1"' . $aria_req . ' /></div></div>',
+	
+		'email' =>
+		  '<div class="form-group">' .
+		  '<label for="email">' . __( 'Email', 'domainreference' ) . ( $req ? '<span class="required"><abbr title="'.  __( 'Required' )  .'"> *</abbr></span>' : '' ) . '</label> ' .
+		  '<div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>' .
+		  '<input id="email" name="email" class="form-control" type="text" value="' . esc_attr(  $commenter['comment_author_email'] ) .
+		  '" size="30" placeholder="'.__("Your Email", "eotheme") .'"  tabindex="2"' . $aria_req . ' />' .
+		'</div><p class="comment-notes"><small>' . __( 'Your email address will not be published.' ) .  '</small></p></div>',
+	
+		'url' =>
+		  '<div class="form-group"><label for="url">' .
+		  __( 'Website', 'domainreference' ) . '</label>' .
+		  '<div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+			<input id="url" name="url" class="form-control" type="text" value="' . esc_attr( $commenter['comment_author_url'] ) .
+		  '" size="30" placeholder="'. __("Your Website", "eotheme") .'" tabindex="3" /></div>
+		  	</div>'
+		)
+	  ), 	
+	  'comment_field' => ( ! is_user_logged_in() ? '</div><!-- closing div for comm fields -->' : '' ) .
+	  '<div class="col-sm-6 col-lg-7"><p class="comment-form-comment"><label for="comment" style="display:block">' . _x( 'Comment', 'noun' ) .
+		'</label><textarea id="comment" name="comment" style="width:100%" rows="8" placeholder="'. __("Your Comment...", "eotheme") .'" tabindex="4"' . $aria_req . '>' .
+		'</textarea></p>
+		<input class="btn btn-primary" name="comm_submit" type="submit" id="comm_submit" tabindex="5" value="'. __("Submit Comment", "eotheme") . '" />',
+	  'comment_notes_after' => '</div><!-- closing tag for open wrapper div of textarea and submit -->',
+	);	
+	comment_form($comm_args); 
+}?>

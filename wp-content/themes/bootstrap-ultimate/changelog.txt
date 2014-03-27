@@ -1,3 +1,10 @@
+v.1.4.8
+*Changed hardcoded custom comment form in favor of default comment_form() to allow customization.
+*Bugfix: Bootswatch theme not being applied if style superority is selected.
+*Bugfix: Logo not being saved while using child theme.
+*Bugfix: Missing sub menus after level 2.
+*Bugfix: Override.css
+
 v.1.4.7.1
 *Validation fixes.
 

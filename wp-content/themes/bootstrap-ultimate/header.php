@@ -38,7 +38,6 @@ global $eo_options,$wpdb,$th_xs_slug;
        <?php if ( $eo_options['use_bsw_themes'] == "1" && $eo_options['bsw_theme'] != "default"  && $eo_options['bsw_theme_sup'] == "1" ) { 
 	    $gl_u = get_template_directory_uri().'/lib/bootstrap/fonts/';
 		?>
-       <link rel='stylesheet' id='bsw_theme-css'  href='<?php echo get_template_directory_uri() . "/panel/of/themes/" . $eo_options['bsw_theme'] . ".css" ?>' type='text/css' media='all' />
        <?php
 	      echo '<style>@font-face {
 		  font-family: "Glyphicons Halflings";
@@ -48,9 +47,6 @@ global $eo_options,$wpdb,$th_xs_slug;
 	   </style>';
 	    } ?>
 		<?php  if ( is_singular() ) eo_inline_css_per_post(); ?>
-
-		<!-- typeahead plugin - if top nav search bar enabled -->
-		<?php require_once('inc/typeahead.php'); ?>
 
 		<?php if ( $eo_options['eo_typo_body'] && array_key_exists("source",$eo_options['eo_typo_body']) && $eo_options['eo_typo_body']["source"] == "gwf_font") { ?>
 		<link href='http://fonts.googleapis.com/css?family=<?php echo $eo_options['eo_typo_body']["face"] ?>:<?php echo $eo_options['eo_typo_body']["variant"] ?>' rel='stylesheet' type='text/css'>
@@ -117,7 +113,7 @@ global $eo_options,$wpdb,$th_xs_slug;
                                     <div class="searchwrap searchf_mlg col-sm-12 col-md-2">
                                         <form class="navbar-form navbar-right form-inline" role="search" method="get" id="searchformtop" action="<?php echo home_url( '/' ); ?>">
                                             <div class="input-group clearfix">
-                                                <input name="s" id="search_lg" style="min-width: 4em;" type="text" class="search-query form-control pull-right s_exp" autocomplete="off" placeholder="<?php _e('Search','bonestheme'); ?>" data-provide="typeahead" data-items="4" data-source='<?php echo $typeahead_data; ?>'>
+                                                <input name="s" id="search_lg" style="min-width: 4em;" type="text" class="search-query form-control pull-right s_exp" autocomplete="off" placeholder="<?php _e('Search','bonestheme'); ?>">
                                                 <div class="input-group-btn">
                                                    <button class="btn btn-info">
                                                    <span class="glyphicon glyphicon-search"></span>

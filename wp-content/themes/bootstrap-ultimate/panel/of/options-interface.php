@@ -312,7 +312,7 @@ function optionsframework_fields() {
 
 		// Uploader
 		case "upload":
-			$output .= optionsframework_uploader( $value['id'], $val, null );
+			$output .= optionsframework_uploader( $value['id'], $val, null,  esc_attr( $option_name . '[' . $value['id'] . ']' ) );
 
 			break;
 

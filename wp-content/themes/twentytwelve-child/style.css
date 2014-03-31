@@ -226,11 +226,38 @@ textarea {
 body.page-id-25 input,
 body.page-id-25 textarea {
 	width: 100%;
+	max-width: 400px;
 }
 body.page-id-25 input.wpcf7-submit {
 	width: 80px;
+	margin-top: 15px;
 }
-
+body.page-id-25 .entry-content #wpcf7-f35-p25-o1.wpcf7{
+	clear: both;
+	padding-top: 50px;
+}
+.skills {
+	color: #FF412C;
+	margin-top: 15px;
+}
+.skills p.button {
+	margin-top: 15px;
+	text-align: center;
+}
+.skills p.button a {
+	background-color: #09394E;
+	border-radius: 2px;
+	color: #FFFFFF;
+	padding: 8px 20px;
+	text-decoration: none;
+}
+.skills p.button a:hover {
+	background-color: #FF412C;
+}
+.skills p.work-info {
+	padding: 10px 0;
+	text-align: center;
+}
 /* Reset non-text input types */
 input[type="checkbox"],
 input[type="radio"],
@@ -590,7 +617,6 @@ a:hover {
 	margin-top: 3px;
 	margin-top: 0.214rem;
 	text-align: right;
-	float: right;
 }
 .main-navigation li {
 	margin-top: 24px;
@@ -702,11 +728,12 @@ footer[role="contentinfo"] a:hover {
 	margin-bottom: 1.714285714rem;
 }
 .entry-header h1.entry-title {
-	background-color: #F6F6F6;
+	background-color: #09394E;
 	font-size: 14px;
 	font-weight: bold;
 	padding: 10px;
 	text-transform: capitalize;
+	color: #fff;
 }
 
 .entry-header img.wp-post-image {
@@ -721,6 +748,7 @@ footer[role="contentinfo"] a:hover {
 }
 .entry-header .entry-title a {
 	text-decoration: none;
+	color: #fff;
 }
 .entry-header .entry-format {
 	margin-top: 24px;
@@ -760,13 +788,15 @@ article.sticky .featured-post {
 	line-height: 1.714285714;
 }
 .entry-content {
-	position: relative;
 	margin-bottom: 25px;
+	position: relative;
 }
 .entry-content img {
 	right: 0;
 	top: 0;
 	box-shadow: none;
+	display: table;
+	margin: 0 auto;
 }
 .entry-content h1,
 .comment-content h1,
@@ -817,6 +847,7 @@ article.sticky .featured-post {
 .entry-content .leftheader{
 	clear: both;
 	width: 100%;
+	padding-top: 20px;
 }
 .entry-content p.title span {
  	color: #09394E;
@@ -824,6 +855,7 @@ article.sticky .featured-post {
 .entry-content .subtitle {
 	color: #812102;
 	font-size: 1rem;
+	margin-top: 15px;
 }
 .entry-content p.copete{
 	font-size: 0.957rem;
@@ -901,6 +933,15 @@ body.page-id-45 .entry-content p a:hover {
 	margin: 0 0 1.714285714rem;
 	line-height: 1.714285714;
 }*/
+
+/* Elimina todos los encabezado de paginas*/
+body.page-id-45 article#post-45.post-45 header.entry-header,
+body.page-id-25 article#post-25.post-25 header.entry-header,
+body.page-id-13 article#post-13.post-13 header.entry-header,
+body.page-id-19 article#post-19.post-19 header.entry-header,
+body.category-13 article#post-291.post-291 header.entry-header{
+	display: none;
+}
 article#post-45.post-45 .entry-content p.button {
 	text-align: center;
 	margin: 20px;
@@ -1593,15 +1634,12 @@ img#wpstats {
 
 
 /* Minimum width of 600 pixels. */
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 650px) {
 	.site {
 		background-color: pink;
 	}
-	.entry-content .leftheader{
-		position: absolute;
-	}
 	.entry-content p.title {
-		font-size: 6em;
+		font-size: 5.5em;
 	}
 	.entry-content .box {
 		clear: right;
@@ -1650,7 +1688,20 @@ img#wpstats {
 	body.category-13 .entry-content p img.wp-image-266 {
 		display: inline!important;
 	}
-
+	.entry-content .leftheader {
+		clear: none;
+		overflow: hidden;
+		position: absolute;
+		padding-top: 0;
+	}
+	body.category-13 article#post-291.post-291 div.entry-content p img.alignright,
+	.entry-content img {
+		display: block;
+		float: right;
+	}
+	body.category-13 article .entry-content img {
+		float: left;
+	}
 }
 /* END Minimum width of 600 pixels.(PINK) */
 
@@ -1823,6 +1874,9 @@ img#wpstats {
 	}
 	body.category-13 .entry-content p img.alignleft {
 		width: auto;
+	}
+	.main-navigation {
+		float: right;
 	}
 }
 /* END Minimum width of 960 pixels.(ORANGE) */

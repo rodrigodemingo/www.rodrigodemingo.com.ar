@@ -35,19 +35,26 @@ foreach ( $caru_post_arr as $caru_post ) {
 	$caru_ids_arr[] = $caru_post->ID;	
 }
 set_transient('eo_caru_ids',$caru_ids_arr);
-
+$qy_postcnt = $caru_qy->post_count;
+//var_dump($qy_postcnt);
+( $postcnt <= $qy_postcnt) ? $postcnt = $postcnt : $postcnt = $qy_postcnt;
 ?>
 <div class="carousel slide" id="myCarousel">
   <!-- Indicators -->
+  <?php if( $qy_postcnt > 1 ) { ?>
   <ol class="carousel-indicators">
-	<li class="" data-slide-to="0" data-target="#myCarousel"></li>
-    <?php $cnt=1; 
+	<!-- <li class="" data-slide-to="0" data-target="#myCarousel"></li> -->
+    <?php $cnt=0; 
 	while($cnt < $postcnt) {
-	  echo '<li data-slide-to="'.$cnt.'" data-target="#myCarousel" class="active"></li>';
+	  $ind = '<li data-slide-to="'. $cnt .'" data-target="#myCarousel"';
+	  if($cnt == 0) $ind .= ' class="active"';
+	  $ind .= '></li>';
+	  echo $ind;
 	  $cnt++;
 	  } 
 	?>
   </ol>
+  <?php } ?>
   <div class="carousel-inner">
 <?php // Carousel Loop
 	while ( $caru_qy->have_posts() ) {
@@ -56,35 +63,46 @@ set_transient('eo_caru_ids',$caru_ids_arr);
 	$caru_qy->the_post();
 
 	$customimg = get_post_meta($post->ID,"_eo_cust_post_feat_img",true);
-	if ( has_post_thumbnail() === false && $eo_options["use_placeholder"] == "1" ) { 
-		if( is_array(eo_get_cons('say_buzz') ) ) {
-			$hia = eo_get_cons('say_buzz');
-			$himx = count($hia);
-			$hin = array_rand($hia);
-			$buzz_txt = $hia[$hin];
-		}
-	
-	?>
-	<img class="hold" src="data:image/png;base64," data-src="<?php echo get_template_directory_uri().'/library/bootstrap/js/holder.js/100%x320/auto/'.array_rand(eo_get_cons('img_h_clss')).'/text:'.esc_attr($buzz_txt); ?>" alt="<?php get_the_title() ?>" data-holder-invisible="true">
-	<?php } ?>
-    <div class="item <?php if($caru_qy->current_post == 0) echo 'active';?>">
-     <?php 	if ( has_post_thumbnail() === false && $eo_options["use_placeholder"] != "1" &&  $eo_options["use_placeholder_img"] == "1" ) { ?>
-    <span class="holdimg">&nbsp;Placeholder</span>
-    <?php } ?>
-	<?php  
+?>
+	<div class="item <?php if($caru_qy->current_post == 0) echo 'active';?>">
+		<div class="container">
+			<div class="row caru">
+                <div class="col-xs-6 col-sm-4">
+				<?php if ( has_post_thumbnail() ) { 
+                    $large_image_url = wp_get_attachment_image_src( get_post_thumbnail_id(), 'large');
+                    echo '<a href="' . $large_image_url[0] . '" class="thumbnail cboxElement" title="' . the_title_attribute('echo=0') . '" >';
+                    the_post_thumbnail( 'eo-featurette',array('class' => 'featurette-image img-responsive') ); 
+                    echo '</a>';?>
+                <?php }
+                elseif($customimg) { 
+                    echo '<a href="'.$customimg. '" class="thumbnail cboxElement" title="' . the_title_attribute('echo=0') . '">';
+                    echo '<img src="'.$customimg.'" class="featurette-image img-responsive custimg" /></a>';
+                }
+				else if( $eo_options["use_placeholder"] == "1" ){ 
+					if( is_array(eo_get_cons('say_buzz') ) ) {
+						$hia = eo_get_cons('say_buzz');
+						$himx = count($hia);
+						$hin = array_rand($hia);
+						$feat_txt = $hia[$hin];
+					} ?> 
+					<div class="thumbnail"><img class="hold" src="data:image/png;base64," data-src="<?php echo get_template_directory_uri().'/library/bootstrap/js/holder.js/350x290/auto/'.array_rand(eo_get_cons('img_h_clss')).'/text:'.esc_attr($feat_txt); ?>" alt="<?php get_the_title() ?>" data-holder-invisible="true"></div> 
+				<?php } // No feat img ?>
+                </div>
+            <div class="col-xs-6 col-sm-8">
+                <div class="carousel-caption">
+                  <h3><?php	echo  get_the_title()  ?></h3>
+                  	<p><?php eo_xcrpt(120); ?></p>
+                    <a href="<?php the_permalink() ?>" class="btn btn-large btn-primary">Details <span class="glyphicon glyphicon-chevron-right"></span></a>
+                </div>
 
-	if ( has_post_thumbnail() ) the_post_thumbnail( 'eo-carousel' );  ?> 
-	<?php    if ( has_post_thumbnail() ) the_post_thumbnail( 'eo-carousel' );  ?> 
-      <div class="container">
-        <div class="carousel-caption">
-          <h1><?php	echo  get_the_title()  ?></h1>
-          <?php eo_xcrpt(12); ?><a href="<?php the_permalink() ?>" class="btn btn-large btn-primary">Details <span class="glyphicon glyphicon-chevron-right"></span></a>
-        </div>
-      </div>
-    </div>
+			</div>
+		</div>
+	</div>
+	</div>
 	<?php } // end carousel loop ?>
   </div>
-
+<?php if( $qy_postcnt > 1 ) { ?>
   <a data-slide="prev" href="#myCarousel" class="left carousel-control"><span class="glyphicon glyphicon-chevron-left"></span></a>
   <a data-slide="next" href="#myCarousel" class="right carousel-control"><span class="glyphicon glyphicon-chevron-right"></span></a>
+<?php } ?>
 </div>

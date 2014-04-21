@@ -2,7 +2,7 @@
 Theme Name: Bootstrap Ultimate
 Theme URI: http://eodepo.com/bootstrap-ultimate
 Description: The ultimate responsive WP theme; cures your common Bootstrap problems such as nav-menu, pagination etc.Built for speed, both loading-wise & development-wise.Comes packed with distinctive features such as adjustable layout, automatic Google Fonts update, sleek options panel, sub-themes and many built-in extensions; lightbox, font-icons etc.Optional layout per post/page.In short, you can have whatever you want, however you want.
-Version: 1.4.8
+Version: 1.4.9
 Author: Emin Özlem
 Author URI: http://eodepo.com
 Tags: responsive-layout, black, white, one-column, two-columns, fluid-layout, custom-background, custom-colors, custom-menu, full-width-template, theme-options, translation-ready,left-sidebar,right-sidebar
@@ -38,11 +38,7 @@ body.admin-bar .navbar-fixed-top{ top: 28px}
     height: auto;
     max-width: 100%;
 }
-a.logo {
-max-width: 100%;
-max-height: 6em;
-overflow: hidden;	
-}
+a.logo {max-width: 100%;}
 
 .navbar-nav > li > a {
     padding: 1em 0.8em;
@@ -185,7 +181,6 @@ dl.gallery-item a.thumbnail {	margin-bottom: 0.4em;}
 #highlights {text-align: center;}
 #content img.wp-smiley {display: inline;}
 span.footmeta {padding-right:0.4em;}
-a#logo_lg {overflow: visible;}
 .comment-form input#defsubmit {display: none;}
 .dropdown-submenu{position:relative;}
 .dropdown-submenu>.dropdown-menu{top:0;left:100%;margin-top:-6px;margin-left:-1px;-webkit-border-radius:0 6px 6px 6px;-moz-border-radius:0 6px 6px 6px;border-radius:0 6px 6px 6px;}
@@ -193,3 +188,8 @@ a#logo_lg {overflow: visible;}
 .dropdown-submenu>a:after{display:block;content:" ";float:right;width:0;height:0;border-color:transparent;border-style:solid;border-width:5px 0 5px 5px;border-left-color:#cccccc;margin-top:5px;margin-right:-10px;}
 .dropdown-submenu:hover>a:after{border-left-color:#ffffff;}
 .dropdown-submenu.pull-left{float:none;}.dropdown-submenu.pull-left>.dropdown-menu{left:-100%;margin-left:10px;-webkit-border-radius:6px 0 6px 6px;-moz-border-radius:6px 0 6px 6px;border-radius:6px 0 6px 6px;}
+.carousel-caption {	padding: 0 !important;}
+.carousel-caption p {font-size: 1.2em;}
+.carousel-control { width: 10%;}
+.navbar-brand {float: none !important; display:block; height: auto !important;}
+/*a#logo_lg {overflow: visible;}*/

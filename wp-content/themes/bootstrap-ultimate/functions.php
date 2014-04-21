@@ -51,8 +51,8 @@ add_filter( 'wp_title', 'bones_filter_title', 10, 2 );
 /************* THUMBNAIL SIZE OPTIONS *************/
 // Thumbnail sizes
 add_image_size( 'eo-featurette', 350, 290, true );
-add_image_size( 'eo-highlight', 140, 140, true);
-add_image_size( 'eo-carousel', 970, 360, true);
+//add_image_size( 'eo-highlight', 140, 140, true);
+//add_image_size( 'eo-carousel', 970, 360, true);
 /************* ACTIVE SIDEBARS ********************/
 // Sidebars & Widgetizes Areas
 function bones_register_sidebars() {
@@ -450,14 +450,7 @@ function eo_theme_head() {
 add_action( 'wp_enqueue_scripts', 'eo_theme_head' );
 function eo_load_bs_less() { 
 }
-//add_action( 'wp_enqueue_scripts', 'load_holder',-99999 );
 add_action( 'wp_enqueue_scripts', 'theme_js' );
- function load_holder(){
-	  if(of_get_option( 'use_placeholder') == "1" ) 	 {
-	 	wp_register_script( 'placeholder',  get_template_directory_uri() . '/rsc/js/holder.js', array(), '2.0', false );	  
- 		wp_enqueue_script('placeholder');
- 	 }
- }
 // enqueue javascript
 if( !function_exists( "theme_js" ) ) {  
  function theme_js(){
@@ -498,12 +491,16 @@ if( !function_exists( "theme_js" ) ) {
 		wp_register_style( 'chosen-fe', get_template_directory_uri() . '/lib/chosen/chosen.min.css', array(), '3.0.1', 'all' );
 		wp_enqueue_style( 'chosen-fe' );
 	}
-    wp_register_script(  'modernizr', get_template_directory_uri() . '/rsc/js/modernizr.min.js',  array('jquery'),'2.6.3' );
-	 wp_enqueue_script('modernizr');
+	wp_register_script(  'modernizr', get_template_directory_uri() . '/rsc/js/modernizr.min.js',  array('jquery'),'2.6.3' );
+	wp_enqueue_script('modernizr');
 	 
+  	 if(of_get_option( 'use_placeholder') == "1" ) 	 {
+	 	wp_register_script( 'placeholder',  get_template_directory_uri() . '/rsc/js/holder.js', array(), '2.0', true );	  
+ 		wp_enqueue_script('placeholder');
+ 	 }
   
-    wp_register_script( 'eo-scripts', get_template_directory_uri() . '/rsc/js/scripts.js', array('jquery'), '1.0', true );
-    wp_enqueue_script('eo-scripts');
+  //  wp_register_script( 'eo-scripts', get_template_directory_uri() . '/rsc/js/scripts.js', array('jquery'), '1.0', true );
+   // wp_enqueue_script('eo-scripts');
  }
 }
 function eo_inline_css_per_post(){
@@ -787,8 +784,9 @@ function inline_css_fe(){
     z-index: 2;
 }';
 	   }
-	   if( array_key_exists('main_bg_color',$eo_options) && ! empty ($eo_options["main_bg_color"]) ) $theme_options_styles .= 'body {background-color: '.$eo_options["main_bg_color"].'}';
+if( array_key_exists('main_bg_color',$eo_options) && ! empty ($eo_options["main_bg_color"]) ) $theme_options_styles .= 'body {background-color: '.$eo_options["main_bg_color"].'}';
 if( array_key_exists('cont_bg_color',$eo_options) && ! empty ($eo_options["cont_bg_color"]) ) $theme_options_styles .= '#maincnot,#inner-footer {background-color: '.$eo_options["cont_bg_color"].'}';
+if( array_key_exists('caru_bg_color',$eo_options) && ! empty ($eo_options["caru_bg_color"]) ) $theme_options_styles .= '#myCarousel {background-color: '.$eo_options["caru_bg_color"].'}';
 if( array_key_exists('main_bg_img',$eo_options) && ! empty ($eo_options["main_bg_img"]) && $eo_options["main_bg_img"] != "none" ) $theme_options_styles .= 'body {background-image: url("'.get_template_directory_uri().'/rsc/img/patterns/'.$eo_options["main_bg_img"].'.jpg")}';
       
       $additional_css = of_get_option( 'eo_custom_css' );
@@ -814,7 +812,26 @@ function eo_front_js() {
 	global $eo_options;
 ?>
 <script type="text/javascript">
-jQuery(document).ready(function($) {	
+jQuery(document).ready(function($) {
+<?php if($eo_options["show_slider"] == "1" ) { ?>
+$('.carousel').carousel(
+	{
+		<?php if($eo_options["caru_pause"] == "1" ) { ?>
+		pause: "hover",
+		<?php } ?>
+		<?php if($eo_options["caru_cont"] != "1" ) { ?>
+		wrap: false,
+		<?php } ?>
+		<?php if( of_get_option( 'caru_autop' ) != "1" ) { ?>
+		interval: false
+		<?php } 
+		else {
+			$intvl = intval($eo_options["caru_interval"]);
+			if($intvl > 1000) echo 'interval:'.$intvl;
+		}?>
+	}
+);
+<?php } ?>
 //$('.searchwrap input'
  <?php if( of_get_option( 'use_placeholder' ) == "1" ) { ?>
 	// _eo-review: placeholder visibility fix

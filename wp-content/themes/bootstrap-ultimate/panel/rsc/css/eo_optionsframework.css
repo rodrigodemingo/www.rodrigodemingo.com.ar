@@ -311,3 +311,7 @@ background: none repeat scroll 0 0 #EFAA46;
 }
 .sing_dmsg {	display: none;}
 .eo_bgthumb { max-height: 7em; width: auto;}
+#section-main_bg_img {
+   height: 600px;
+   overflow-y: scroll;
+}

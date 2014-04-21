@@ -288,7 +288,8 @@ function eo_get_q_cats() {
 	}
 	ksort($cat_arr);
 	$st_cat_arr = array(0 => "ALL");
-	$fin_cat_arr = array_merge($st_cat_arr,$cat_arr);
+//	$fin_cat_arr = array_merge($st_cat_arr,$cat_arr);
+	$fin_cat_arr = $st_cat_arr + $cat_arr;
 	return $fin_cat_arr;
 }
 function eo_order_arr() {

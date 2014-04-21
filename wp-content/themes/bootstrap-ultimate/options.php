@@ -244,6 +244,7 @@ function optionsframework_options() {
 						"class" => "col-sm-6",
 						"std" => "",
 						"type" => "upload");
+						
 	$options[] = array( "name" => __('Custom favicon', 'eo_theme'),
 						"desc" => "URL for a valid .ico favicon",
 						"id" => "favicon_url",
@@ -615,6 +616,14 @@ function optionsframework_options() {
 						"class" => "col-md-4 col-lg-3",
 						"options" => eo_get_q_pages()
 						);	
+	$options[] = array( "name" => __('Carousel bg color', 'eo_theme'),
+						"desc" => "Carousel background color.",
+						"id" => "caru_bg_color",
+						"group" => "carousel",
+						"class" => "col-md-4 col-lg-3",
+						//"prev" => "bgcolors.jpg",
+						"std" => "",
+						"type" => "color");	
 						
 	$options[] = array( "name" => __('Carousel layout ?', 'eo_theme'),
 						"id" => "slider_p",
@@ -700,7 +709,6 @@ function optionsframework_options() {
 						"class" => eo_opt_dept('show_slider','1','col-md-4 col-lg-3|col-md-4 col-lg-3 stack'),
 						"group" => "carousel",
 						"std" => "date",
-						"force_clear" => "visible-md",
 						"options" => eo_order_by_arr(),
 						"type" => "select");				
 	$options[] = array( "name" => __('Order &darr; &uarr;', 'eo_theme'),
@@ -709,17 +717,44 @@ function optionsframework_options() {
 						"class" => eo_opt_dept('show_slider','1','col-md-4 col-lg-3|col-md-4 col-lg-3 stack'),
 						"group" => "carousel",
 						"std" => "DESC",
+						"force_clear" => "visible-md visible-lg",
 						"options" => eo_order_arr(),
-						"type" => "select");
-						
+						"type" => "select");				
+	$options[] = array( "name" => __('Autoplay', 'eo_theme'),
+						"desc" => "Autoplay.",
+						"id" => "caru_autop",
+						"std" => "1",
+						"group" => "carousel",
+						"class" => "trigger ".eo_opt_dept('show_slider','1','col-md-4 col-lg-3|col-md-4 col-lg-3 stack'),
+						"type" => "checkbox");
+	$options[] = array( "name" => __('Pause', 'eo_theme'),
+						"desc" => "Pause on hover.",
+						"id" => "caru_pause",
+						"std" => "1",
+						"group" => "carousel",
+						"class" => "trigger ".eo_opt_dept('show_slider','1','col-md-4 col-lg-3|col-md-4 col-lg-3 stack'),
+						"type" => "checkbox");
+	$options[] = array( "name" => __('Continous', 'eo_theme'),
+						"desc" => "Continous -infinite slides, OFF for only playing each slide ONCE.",
+						"id" => "caru_cont",
+						"std" => "1",
+						"group" => "carousel",
+						"class" => "trigger ".eo_opt_dept('show_slider','1','col-md-4 col-lg-3|col-md-4 col-lg-3 stack'),
+						"type" => "checkbox");
+	$options[] = array( "name" => __('Interval', 'eo_theme'),
+						"desc" => "In miliseconds ex: 5000 for 5seconds. Minimum 1000. Time each slide displays",
+						"id" => "caru_interval",
+						"class" => "trigger ".eo_opt_dept('show_slider','1','col-md-4 col-lg-3|col-md-4 col-lg-3 stack'),
+						"group" => "carousel",
+						"std" => "5000",
+						"type" => "text");
 	$options[] = array( "name" => __('Prevent overflow', 'eo_theme'),
 						"desc" => "It may stretch down too much if your image is vertical or stretches too much.",
 						"id" => "caru_of_prevent",
 						"std" => "1",
 						"group" => "carousel",
 						"class" => "trigger ".eo_opt_dept('show_slider','1','col-md-4 col-lg-3|col-md-4 col-lg-3 stack'),
-						"type" => "checkbox");
-						
+						"type" => "checkbox");						
 	$options[] = array( "name" => __('Max. height', 'eo_theme'),
 						"desc" => "Value in px.",
 						"id" => "caru_of_prevent_h",

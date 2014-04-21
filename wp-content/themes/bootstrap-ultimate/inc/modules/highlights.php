@@ -47,7 +47,7 @@ set_transient('eo_high_ids',$high_ids_arr);
 ?>
     <div class="col-sm-6 col-md-4 col-lg-3 ahighlight">
     <?php	if ( has_post_thumbnail() ) { 
-		the_post_thumbnail( 'eo-highlight',array('class' => 'img-circle img-responsive') );
+		the_post_thumbnail( 'thumbnail',array('class' => 'img-circle img-responsive') );
 	 }
 	 else if($customimg) {
 		?>	<img class="hold img-circle img-responsive" src="<?php echo $customimg?>"  alt="<?php get_the_title() ?>">

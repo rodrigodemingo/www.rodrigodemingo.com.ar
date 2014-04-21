@@ -15,7 +15,7 @@ class GoogleSitemapGeneratorLoader {
 	/**
 	 * @var Version of the generator in SVN
 	 */
-	private static $svnVersion = '$Id: sitemap-loader.php 884678 2014-03-30 15:52:25Z arnee $';
+	private static $svnVersion = '$Id: sitemap-loader.php 891809 2014-04-12 11:06:34Z arnee $';
 
 
 	/**
@@ -84,7 +84,7 @@ class GoogleSitemapGeneratorLoader {
 
 		add_filter('template_redirect', array(__CLASS__, 'DoTemplateRedirect'), 1, 0);
 
-		add_filter('parse_request', array(__CLASS__, 'KillFrontpageQuery'), 1, 0);
+		//add_filter('parse_request', array(__CLASS__, 'KillFrontpageQuery'), 1, 0);
 	}
 
 	/**
@@ -114,6 +114,21 @@ class GoogleSitemapGeneratorLoader {
 			'sitemap(-+([a-zA-Z0-9_-]+))?\.html.gz$' => 'index.php?xml_sitemap=params=$matches[2];html=true;zip=true'
 		);
 		return array_merge($smRules,$wpRules);
+	}
+
+	/**
+	 * Returns the rules required for Nginx permalinks
+	 *
+	 * @return string[]
+	 */
+	public static function GetNginXRules() {
+		return array(
+			'rewrite ^/sitemap(-+([a-zA-Z0-9_-]+))?\.xml$ "/index.php?xml_sitemap=params=$2" last;',
+			'rewrite ^/sitemap(-+([a-zA-Z0-9_-]+))?\.xml\.gz$ "/index.php?xml_sitemap=params=$2;zip=true" last;',
+			'rewrite ^/sitemap(-+([a-zA-Z0-9_-]+))?\.html$ "/index.php?xml_sitemap=params=$2;html=true" last;',
+			'rewrite ^/sitemap(-+([a-zA-Z0-9_-]+))?\.html.gz$ "/index.php?xml_sitemap=params=$2;html=true;zip=true" last;'
+		);
+
 	}
 
 	/**
@@ -186,7 +201,7 @@ class GoogleSitemapGeneratorLoader {
 	}
 
 	public static function KillFrontpageQuery() {
-		add_filter('posts_request', array('GoogleSitemapGeneratorLoader', 'KillFrontpagePosts'), 1000, 2);
+		//add_filter('posts_request', array('GoogleSitemapGeneratorLoader', 'KillFrontpagePosts'), 1000, 2);
 	}
 
 	public static function KillFrontpagePosts($sql, &$query) {

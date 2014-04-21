@@ -1,3 +1,11 @@
+v.1.4.9
+*Bugfix: Many carousel bugfixes
+*Modified: Whole Carousel layout.
+*Added: More Carousel options (bg, interval, autoplay, pause, continousity)
+*Removed: Redundant image sizes. (X eo-highlight-> now uses thumbnail. X eo-carousel-> removed due to new carousel layout)
+*Bugfix: Mobile menu logo overlap, logo adjustments.
+*Added: New Theme: Darkly.
+
 v.1.4.8
 *Changed hardcoded custom comment form in favor of default comment_form() to allow customization.
 *Bugfix: Bootswatch theme not being applied if style superority is selected.

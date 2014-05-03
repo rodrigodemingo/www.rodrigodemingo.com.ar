@@ -1,0 +1,430 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Synchi v5.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2013-01-26 16:33:20+0000\n"
+"Last-Translator: mdjekic <mdjekic@gmail.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Poedit-Language: English\n"
+"X-Poedit-Country: SERBIA\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;\n"
+"X-Poedit-Basepath: ../\n"
+"X-Poedit-Bookmarks: \n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Textdomain-Support: yes"
+
+#: php/synchi_ide.php:25
+#@ synchi
+msgid "New File"
+msgstr "Нова датотека"
+
+#: php/synchi_ide.php:26
+#@ synchi
+msgid "New Folder"
+msgstr "Нови директоријум"
+
+#: php/synchi_ide.php:27
+#@ synchi
+msgid "Delete"
+msgstr "Обриши"
+
+#: php/synchi_ide.php:28
+#@ synchi
+msgid "Cut"
+msgstr "Исеци"
+
+#: php/synchi_ide.php:29
+#@ synchi
+msgid "Copy"
+msgstr "Копирај"
+
+#: php/synchi_ide.php:30
+#@ synchi
+msgid "Paste"
+msgstr "Налепи"
+
+#: php/synchi_ide.php:38
+#@ synchi
+msgid "Close"
+msgstr "Затвори"
+
+#: php/synchi_ide.php:39
+#@ synchi
+msgid "Close Other"
+msgstr "Затвори остале"
+
+#: php/synchi_ide.php:40
+#@ synchi
+msgid "Close All"
+msgstr "Затвори све"
+
+#: php/synchi_ide.php:47
+#@ synchi
+msgid "files"
+msgstr "датотеке"
+
+#: php/synchi_ide.php:37
+#: php/synchi_ide.php:92
+#@ synchi
+msgid "Save"
+msgstr "Сачувај"
+
+#: php/synchi_ide.php:93
+#@ synchi
+msgid "Save All"
+msgstr "Сачувај све"
+
+#: php/editor_controls.php:28
+#: php/synchi_ide.php:96
+#@ synchi
+msgid "Search"
+msgstr "Пронађи"
+
+#: php/editor_controls.php:29
+#: php/synchi_ide.php:97
+#@ synchi
+msgid "Find Previous"
+msgstr "Пронађи претходни"
+
+#: php/editor_controls.php:30
+#: php/synchi_ide.php:98
+#@ synchi
+msgid "Find Next"
+msgstr "Пронађи следећи"
+
+#: php/editor_controls.php:31
+#: php/synchi_ide.php:99
+#@ synchi
+msgid "Replace"
+msgstr "Замени"
+
+#: php/editor_controls.php:32
+#: php/synchi_ide.php:100
+#@ synchi
+msgid "Format"
+msgstr "Форматирај"
+
+#: php/editor_controls.php:33
+#: php/synchi_ide.php:101
+#@ synchi
+msgid "Indent left"
+msgstr "Помери улево"
+
+#: php/editor_controls.php:34
+#: php/synchi_ide.php:102
+#@ synchi
+msgid "Indent right"
+msgstr "Помери удесно"
+
+#: php/synchi_ide.php:103
+#@ synchi
+msgid "Undo"
+msgstr "Поништи претходну акцију"
+
+#: php/synchi_ide.php:104
+#@ synchi
+msgid "Redo"
+msgstr "Понови претходну акцију"
+
+#: php/editor_controls.php:35
+#: php/synchi_ide.php:105
+#@ synchi
+msgid "Go to line"
+msgstr "Иди на линију"
+
+#: php/editor_controls.php:36
+#: php/head/widget.php:45
+#: php/synchi_ide.php:106
+#@ synchi
+msgid "Toggle Fullscreen"
+msgstr "Укључи / Искључи рад преко целог екрана"
+
+#: php/head/ide.php:74
+#@ synchi
+msgid "Directory copied"
+msgstr "Директоријум копиран"
+
+#: php/head/ide.php:75
+#@ synchi
+msgid "File copied"
+msgstr "Датотека копирана"
+
+#: php/head/ide.php:76
+#@ synchi
+msgid "Directory cut"
+msgstr "Директоријум исечен"
+
+#: php/head/ide.php:77
+#@ synchi
+msgid "File cut"
+msgstr "Фајл исечен"
+
+#: php/head/ide.php:78
+#@ synchi
+msgid "Copying"
+msgstr "Копирање"
+
+#: php/head/ide.php:79
+#@ synchi
+msgid "Done"
+msgstr "Готово"
+
+#: php/head/ide.php:80
+#@ synchi
+msgid "Deleting"
+msgstr "Брисање"
+
+#: php/head/ide.php:81
+#@ synchi
+msgid "Delete folder"
+msgstr "Обриши директоријум"
+
+#: php/head/ide.php:82
+#@ synchi
+msgid "Delete file"
+msgstr "Обриши датотеку"
+
+#: php/head/ide.php:83
+#@ synchi
+msgid "File deleted"
+msgstr "Датотека обрисана"
+
+#: php/head/ide.php:84
+#@ synchi
+msgid "Folder deleted"
+msgstr "Директоријум обрисан"
+
+#: php/head/ide.php:85
+#@ synchi
+msgid "Select a file/dir to cut"
+msgstr "Одабери датотеку/директоријум за сечење"
+
+#: php/head/ide.php:86
+#@ synchi
+msgid "Select a file/dir to copy"
+msgstr "Одабери датотеку/директоријум за копирање"
+
+#: php/head/ide.php:87
+#@ synchi
+msgid "You must select where to paste"
+msgstr "Мораш одабрати где да налепиш"
+
+#: php/head/ide.php:88
+#@ synchi
+msgid "You must select where to upload"
+msgstr "Мораш одабрати где да поставиш"
+
+#: php/head/ide.php:89
+#@ synchi
+msgid "Select a file/dir to download"
+msgstr "Одабери датотеку/директоријум за преузимање"
+
+#: php/head/editor.php:54
+#: php/head/ide.php:90
+#@ synchi
+msgid "Unknown control"
+msgstr "Непозната контрола"
+
+#: php/head/editor.php:55
+#: php/head/ide.php:91
+#@ synchi
+msgid "Not yet implemented"
+msgstr "Није још увек имплементирано"
+
+#: php/head/ide.php:92
+#@ synchi
+msgid "Exit without saving"
+msgstr "Изађи без чувања"
+
+#: php/head/editor.php:56
+#: php/head/ide.php:93
+#: php/head/widget.php:44
+#@ synchi
+msgid "Initializing Synchi IDE"
+msgstr "Иницијализује се Synchi IDE"
+
+#: php/head/ide.php:94
+#@ synchi
+msgid "Unable to load Synchi IDE"
+msgstr "Није могуће учитати Synchi IDE"
+
+#: php/head/ide.php:95
+#@ synchi
+msgid "folder with all files and subfolders"
+msgstr "директоријум са свим датотекама и поддиректоријумима"
+
+#: php/head/ide.php:96
+#@ synchi
+msgid "Select a file/dir to delete"
+msgstr "Одабери датотеку/директоријум за брисање"
+
+#: php/head/ide.php:97
+#@ synchi
+msgid "Creating folder"
+msgstr "Креирање директоријума"
+
+#: php/head/ide.php:98
+#@ synchi
+msgid "Enter folder name"
+msgstr "Унеси име директоријума"
+
+#: php/head/ide.php:99
+#: php/head/ide.php:103
+#@ synchi
+msgid "You must select a directory"
+msgstr "Мораш одабрати директоријум"
+
+#: php/head/ide.php:100
+#@ synchi
+msgid "File created"
+msgstr "Датотека креирана"
+
+#: php/head/ide.php:101
+#@ synchi
+msgid "Creating file"
+msgstr "Креирање датотеке"
+
+#: php/head/ide.php:102
+#@ synchi
+msgid "Enter filename"
+msgstr "Унеси назив датотеке"
+
+#: php/head/ide.php:104
+#: php/head/ide.php:109
+#@ synchi
+msgid "Error: file not saved"
+msgstr "Грешка: датотека није сачувана"
+
+#: php/head/ide.php:105
+#: php/head/ide.php:110
+#@ synchi
+msgid "File saved"
+msgstr "Датотека сачувана"
+
+#: php/head/ide.php:106
+#: php/head/ide.php:111
+#@ synchi
+msgid "Saving"
+msgstr "Чување"
+
+#: php/head/ide.php:107
+#@ synchi
+msgid "Saved in total"
+msgstr "Укупно сачувано"
+
+#: php/head/ide.php:108
+#@ synchi
+msgid "Saving all files"
+msgstr "Чување свих датотека"
+
+#: php/head/ide.php:112
+#@ synchi
+msgid "Save changes to"
+msgstr "Сачувај промене"
+
+#: php/synchi_ide.php:45
+#@ synchi
+msgid "themes"
+msgstr "теме"
+
+#: php/synchi_ide.php:46
+#@ synchi
+msgid "plugins"
+msgstr "додаци"
+
+#: php/synchi_ide.php:94
+#@ synchi
+msgid "Comment"
+msgstr "Закоментариши"
+
+#: php/synchi_ide.php:95
+#@ synchi
+msgid "Uncomment"
+msgstr "Одкоментариши"
+
+#: php/head/ide.php:113
+#@ synchi
+msgid "File size"
+msgstr "Величина датотеке:"
+
+#: php/settings.php:35
+#@ synchi
+msgid "Synchi Settings"
+msgstr "Synchi подешавања"
+
+#: php/settings.php:39
+#@ synchi
+msgid "Global Settings"
+msgstr "Глобална подешавања"
+
+#: php/settings.php:43
+#@ synchi
+msgid "Plugins Editor"
+msgstr "Уређивач додатака"
+
+#: php/settings.php:53
+#@ synchi
+msgid "Themes Editor"
+msgstr "Уређивач тема"
+
+#: php/settings.php:63
+#@ synchi
+msgid "Articles Editor"
+msgstr "Уређивач чланака"
+
+#: php/settings.php:84
+#@ synchi
+msgid "Editing Settings"
+msgstr "Радна подешавања"
+
+#: php/settings.php:88
+#@ synchi
+msgid "Line Numbers"
+msgstr "Нумерисане линије"
+
+#: php/settings.php:98
+#@ synchi
+msgid "Match Brackets"
+msgstr "Поклапање заграда"
+
+#: php/settings.php:108
+#@ synchi
+msgid "Indent With Tabs"
+msgstr "Одвајање табулатором"
+
+#: php/settings.php:118
+#@ synchi
+msgid "Tab Size"
+msgstr "Величина табулатора"
+
+#: php/settings.php:130
+#@ synchi
+msgid "Font Size"
+msgstr "Величина текста"
+
+#: php/settings.php:141
+#@ synchi
+msgid "Other Settings"
+msgstr "Остала подешавања"
+
+#: php/settings.php:145
+#@ synchi
+msgid "Theme"
+msgstr "Тема"
+
+#: php/settings.php:161
+#@ synchi
+msgid "theme preview"
+msgstr "изглед теме"
+
+#: php/settings.php:73
+#@ synchi
+msgid "Text Widgets Editor"
+msgstr "Уређивач текстуалних виџета"
+

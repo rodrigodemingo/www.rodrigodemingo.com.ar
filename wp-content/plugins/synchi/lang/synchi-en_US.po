@@ -1,0 +1,420 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Synchi v4.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2012-10-31 23:56:59+0000\n"
+"Last-Translator: mdjekic <mdjekic@gmail.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Poedit-Language: English\n"
+"X-Poedit-Country: UNITED STATES\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;\n"
+"X-Poedit-Basepath: ../\n"
+"X-Poedit-Bookmarks: \n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Textdomain-Support: yes"
+
+#: php/synchi_ide.php:25
+#@ synchi
+msgid "New File"
+msgstr "New File"
+
+#: php/synchi_ide.php:26
+#@ synchi
+msgid "New Folder"
+msgstr ""
+
+#: php/synchi_ide.php:27
+#@ synchi
+msgid "Delete"
+msgstr ""
+
+#: php/synchi_ide.php:28
+#@ synchi
+msgid "Cut"
+msgstr ""
+
+#: php/synchi_ide.php:29
+#@ synchi
+msgid "Copy"
+msgstr ""
+
+#: php/synchi_ide.php:30
+#@ synchi
+msgid "Paste"
+msgstr ""
+
+#: php/synchi_ide.php:38
+#@ synchi
+msgid "Close"
+msgstr ""
+
+#: php/synchi_ide.php:39
+#@ synchi
+msgid "Close Other"
+msgstr ""
+
+#: php/synchi_ide.php:40
+#@ synchi
+msgid "Close All"
+msgstr ""
+
+#: php/synchi_ide.php:47
+#@ synchi
+msgid "files"
+msgstr ""
+
+#: php/synchi_ide.php:37
+#: php/synchi_ide.php:92
+#@ synchi
+msgid "Save"
+msgstr ""
+
+#: php/synchi_ide.php:93
+#@ synchi
+msgid "Save All"
+msgstr ""
+
+#: php/editor_controls.php:28
+#: php/synchi_ide.php:96
+#@ synchi
+msgid "Search"
+msgstr ""
+
+#: php/editor_controls.php:29
+#: php/synchi_ide.php:97
+#@ synchi
+msgid "Find Previous"
+msgstr ""
+
+#: php/editor_controls.php:30
+#: php/synchi_ide.php:98
+#@ synchi
+msgid "Find Next"
+msgstr ""
+
+#: php/editor_controls.php:31
+#: php/synchi_ide.php:99
+#@ synchi
+msgid "Replace"
+msgstr ""
+
+#: php/editor_controls.php:32
+#: php/synchi_ide.php:100
+#@ synchi
+msgid "Format"
+msgstr ""
+
+#: php/editor_controls.php:33
+#: php/synchi_ide.php:101
+#@ synchi
+msgid "Indent left"
+msgstr ""
+
+#: php/editor_controls.php:34
+#: php/synchi_ide.php:102
+#@ synchi
+msgid "Indent right"
+msgstr ""
+
+#: php/synchi_ide.php:103
+#@ synchi
+msgid "Undo"
+msgstr ""
+
+#: php/synchi_ide.php:104
+#@ synchi
+msgid "Redo"
+msgstr ""
+
+#: php/editor_controls.php:35
+#: php/synchi_ide.php:105
+#@ synchi
+msgid "Go to line"
+msgstr ""
+
+#: php/editor_controls.php:36
+#: php/synchi_ide.php:106
+#@ synchi
+msgid "Toggle Fullscreen"
+msgstr ""
+
+#: php/head/ide.php:74
+#@ synchi
+msgid "Directory copied"
+msgstr ""
+
+#: php/head/ide.php:75
+#@ synchi
+msgid "File copied"
+msgstr ""
+
+#: php/head/ide.php:76
+#@ synchi
+msgid "Directory cut"
+msgstr ""
+
+#: php/head/ide.php:77
+#@ synchi
+msgid "File cut"
+msgstr ""
+
+#: php/head/ide.php:78
+#@ synchi
+msgid "Copying"
+msgstr ""
+
+#: php/head/ide.php:79
+#@ synchi
+msgid "Done"
+msgstr ""
+
+#: php/head/ide.php:80
+#@ synchi
+msgid "Deleting"
+msgstr ""
+
+#: php/head/ide.php:81
+#@ synchi
+msgid "Delete folder"
+msgstr ""
+
+#: php/head/ide.php:82
+#@ synchi
+msgid "Delete file"
+msgstr ""
+
+#: php/head/ide.php:83
+#@ synchi
+msgid "File deleted"
+msgstr ""
+
+#: php/head/ide.php:84
+#@ synchi
+msgid "Folder deleted"
+msgstr ""
+
+#: php/head/ide.php:85
+#@ synchi
+msgid "Select a file/dir to cut"
+msgstr ""
+
+#: php/head/ide.php:86
+#@ synchi
+msgid "Select a file/dir to copy"
+msgstr ""
+
+#: php/head/ide.php:87
+#@ synchi
+msgid "You must select where to paste"
+msgstr ""
+
+#: php/head/ide.php:88
+#@ synchi
+msgid "You must select where to upload"
+msgstr ""
+
+#: php/head/ide.php:89
+#@ synchi
+msgid "Select a file/dir to download"
+msgstr ""
+
+#: php/head/ide.php:90
+#@ synchi
+msgid "Unknown control"
+msgstr ""
+
+#: php/head/ide.php:91
+#@ synchi
+msgid "Not yet implemented"
+msgstr ""
+
+#: php/head/ide.php:92
+#@ synchi
+msgid "Exit without saving"
+msgstr ""
+
+#: php/head/ide.php:93
+#@ synchi
+msgid "Initializing Synchi IDE"
+msgstr ""
+
+#: php/head/ide.php:94
+#@ synchi
+msgid "Unable to load Synchi IDE"
+msgstr ""
+
+#: php/head/ide.php:95
+#@ synchi
+msgid "folder with all files and subfolders"
+msgstr ""
+
+#: php/head/ide.php:96
+#@ synchi
+msgid "Select a file/dir to delete"
+msgstr ""
+
+#: php/head/ide.php:97
+#@ synchi
+msgid "Creating folder"
+msgstr ""
+
+#: php/head/ide.php:98
+#@ synchi
+msgid "Enter folder name"
+msgstr ""
+
+#: php/head/ide.php:99
+#: php/head/ide.php:103
+#@ synchi
+msgid "You must select a directory"
+msgstr ""
+
+#: php/head/ide.php:100
+#@ synchi
+msgid "File created"
+msgstr ""
+
+#: php/head/ide.php:101
+#@ synchi
+msgid "Creating file"
+msgstr ""
+
+#: php/head/ide.php:102
+#@ synchi
+msgid "Enter filename"
+msgstr ""
+
+#: php/head/ide.php:104
+#: php/head/ide.php:109
+#@ synchi
+msgid "Error: file not saved"
+msgstr ""
+
+#: php/head/ide.php:105
+#: php/head/ide.php:110
+#@ synchi
+msgid "File saved"
+msgstr ""
+
+#: php/head/ide.php:106
+#: php/head/ide.php:111
+#@ synchi
+msgid "Saving"
+msgstr ""
+
+#: php/head/ide.php:107
+#@ synchi
+msgid "Saved in total"
+msgstr ""
+
+#: php/head/ide.php:108
+#@ synchi
+msgid "Saving all files"
+msgstr ""
+
+#: php/head/ide.php:112
+#@ synchi
+msgid "Save changes to"
+msgstr ""
+
+#: php/synchi_ide.php:45
+#@ synchi
+msgid "themes"
+msgstr ""
+
+#: php/synchi_ide.php:46
+#@ synchi
+msgid "plugins"
+msgstr ""
+
+#: php/synchi_ide.php:94
+#@ synchi
+msgid "Comment"
+msgstr ""
+
+#: php/synchi_ide.php:95
+#@ synchi
+msgid "Uncomment"
+msgstr ""
+
+#: php/head/ide.php:113
+#@ synchi
+msgid "File size"
+msgstr ""
+
+#: php/settings.php:35
+#@ synchi
+msgid "Synchi Settings"
+msgstr ""
+
+#: php/settings.php:39
+#@ synchi
+msgid "Global Settings"
+msgstr ""
+
+#: php/settings.php:43
+#@ synchi
+msgid "Plugins Editor"
+msgstr ""
+
+#: php/settings.php:53
+#@ synchi
+msgid "Themes Editor"
+msgstr ""
+
+#: php/settings.php:63
+#@ synchi
+msgid "Articles Editor"
+msgstr ""
+
+#: php/settings.php:74
+#@ synchi
+msgid "Editing Settings"
+msgstr ""
+
+#: php/settings.php:78
+#@ synchi
+msgid "Line Numbers"
+msgstr ""
+
+#: php/settings.php:88
+#@ synchi
+msgid "Match Brackets"
+msgstr ""
+
+#: php/settings.php:98
+#@ synchi
+msgid "Indent With Tabs"
+msgstr ""
+
+#: php/settings.php:108
+#@ synchi
+msgid "Tab Size"
+msgstr ""
+
+#: php/settings.php:120
+#@ synchi
+msgid "Font Size"
+msgstr ""
+
+#: php/settings.php:131
+#@ synchi
+msgid "Other Settings"
+msgstr ""
+
+#: php/settings.php:135
+#@ synchi
+msgid "Theme"
+msgstr ""
+
+#: php/settings.php:151
+#@ synchi
+msgid "theme preview"
+msgstr ""
+

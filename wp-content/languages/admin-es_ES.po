@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Administration package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2014-04-16 17:43:29+0000\n"
+"PO-Revision-Date: 2014-04-15 18:27:20+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -52,7 +52,7 @@ msgstr "Arrastra y suelta tus imágenes"
 
 #: wp-admin/about.php:56
 msgid "Uploading your images is easier than ever. Just grab them from your desktop and drop them onto the editor."
-msgstr "Subir tus imágenes es más fácil que nunca. Simplemente arrástralas desde tu escritorio y suéltalas en el editor."
+msgstr ""
 
 #: wp-admin/about.php:65
 msgid "Gallery previews"

@@ -17,7 +17,10 @@
 		</div>
 		<?php endif; ?>
 		<header class="entry-header">
-			<?php the_post_thumbnail(); ?>
+			<?php if ( ! post_password_required() && ! is_attachment() ) :
+				the_post_thumbnail();
+			endif; ?>
+
 			<?php if ( is_single() ) : ?>
 			<h1 class="entry-title"><?php the_title(); ?></h1>
 			<?php else : ?>
@@ -31,6 +34,7 @@
 				</div><!-- .comments-link -->
 			<?php endif; // comments_open() ?>
 		</header><!-- .entry-header -->
+
 		<?php if ( is_search() ) : // Only display Excerpts for Search ?>
 		<div class="entry-summary">
 			<?php the_excerpt(); ?>
